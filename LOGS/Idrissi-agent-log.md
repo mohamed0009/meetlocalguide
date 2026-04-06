@@ -308,3 +308,22 @@
 - Commands:
   - mvn test -DskipTests=false
 - Outcome: all test suites now execute with active profile "test"; build succeeded with 35 tests run, 0 failures, 0 errors, and 4 expected Docker-dependent skips.
+
+## 2026-04-06 21:10:38
+
+- Action: implemented backend production hardening Phase 2 observability and runtime operations baseline.
+- Paths:
+  - backend/pom.xml
+  - backend/src/main/resources/application.yml
+  - backend/src/main/resources/application-dev.yml
+  - backend/src/main/resources/application-test.yml
+  - backend/src/main/resources/application-prod.yml
+  - backend/src/main/java/com/meetlocalguide/platform/config/security/SecurityConfig.java
+- Outcome: added Actuator and Prometheus metrics support, configured health/readiness/liveness probes and graceful shutdown, introduced environment-aware metric tags, and updated security routing to expose actuator probe/info/metrics endpoints.
+
+## 2026-04-06 21:10:38
+
+- Action: validated backend after Phase 2 observability changes.
+- Commands:
+  - mvn clean package -DskipTests=false
+- Outcome: build succeeded and jar artifact generated; tests summary was 35 run, 0 failures, 0 errors, 4 skipped due unavailable local Docker runtime for Testcontainers.

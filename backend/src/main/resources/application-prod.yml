@@ -10,6 +10,13 @@ spring:
   flyway:
     baseline-on-migrate: false
 
+management:
+  server:
+    port: ${MANAGEMENT_SERVER_PORT:${SERVER_PORT:8080}}
+  endpoint:
+    health:
+      show-details: never
+
 app:
   security:
     jwt:

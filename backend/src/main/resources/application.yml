@@ -13,9 +13,39 @@ spring:
   flyway:
     enabled: true
     locations: classpath:db/migration
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
 
 server:
   port: ${SERVER_PORT:8080}
+  shutdown: graceful
+
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: never
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
+      environment: ${spring.profiles.active:${spring.profiles.default:dev}}
+
+info:
+  app:
+    name: ${spring.application.name}
+    description: MeetLocalGuide backend API
+    version: ${APP_VERSION:dev}
 
 app:
   security:
