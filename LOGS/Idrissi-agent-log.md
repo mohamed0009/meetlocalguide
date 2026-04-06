@@ -279,3 +279,32 @@
   - unresolved marker scan (TODO/FIXME/NotImplemented/UnsupportedOperationException)
   - IDE diagnostics check for backend folder
 - Outcome: test/build checks passed (25 tests, 0 failures, 0 errors, 4 skipped due unavailable Docker); no backend diagnostics errors; no unresolved code markers found; one structural gap identified where payment module currently includes domain only without api/application/infrastructure layers.
+
+## 2026-04-06 21:01:41
+
+- Action: implemented backend production hardening Phase 1 with migration-first schema management and profile split.
+- Paths:
+  - backend/pom.xml
+  - backend/src/main/resources/application.yml
+  - backend/src/main/resources/application-dev.yml
+  - backend/src/main/resources/application-test.yml
+  - backend/src/main/resources/application-prod.yml
+  - backend/src/main/resources/db/migration/V1__initial_schema.sql
+  - backend/src/test/java/com/meetlocalguide/platform/support/PostgresTestContainerSupport.java
+- Outcome: Flyway integrated, shared base configuration isolated, env-specific profiles created, initial schema migration added, and integration-test JPA strategy aligned to validate mode.
+
+## 2026-04-06 21:03:36
+
+- Action: executed full backend clean package validation after hardening changes.
+- Commands:
+  - mvn clean package -DskipTests=false
+- Outcome: build succeeded and jar artifact generated; tests summary was 35 run, 0 failures, 0 errors, 4 skipped due unavailable local Docker runtime for Testcontainers.
+
+## 2026-04-06 21:04:45
+
+- Action: activated Spring test profile in Maven surefire and revalidated tests.
+- Paths:
+  - backend/pom.xml
+- Commands:
+  - mvn test -DskipTests=false
+- Outcome: all test suites now execute with active profile "test"; build succeeded with 35 tests run, 0 failures, 0 errors, and 4 expected Docker-dependent skips.

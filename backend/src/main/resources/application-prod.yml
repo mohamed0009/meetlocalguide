@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    baseline-on-migrate: false
+
+app:
+  security:
+    jwt:
+      issuer: ${APP_JWT_ISSUER}
+      secret: ${APP_JWT_SECRET}
+      access-token-minutes: ${APP_JWT_ACCESS_TOKEN_MINUTES:15}
+      refresh-token-days: ${APP_JWT_REFRESH_TOKEN_DAYS:30}
+    cors:
+      allowed-origins:
+        - ${APP_CORS_ALLOWED_ORIGIN_PRIMARY:https://meetlocalguide.com}
+        - ${APP_CORS_ALLOWED_ORIGIN_SECONDARY:https://www.meetlocalguide.com}
