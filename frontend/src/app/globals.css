@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fffaf2;
+  --foreground: #1d1a16;
+  --ink-soft: #5f5246;
+  --sand-100: #f6e5cf;
+  --sand-200: #ecd7b6;
+  --ocean-100: #d8eeed;
+  --ocean-600: #2d8382;
+  --ocean-800: #1f5658;
+  --terracotta-500: #cc5e38;
+  --terracotta-700: #a6492a;
+  --line: #e7d5bc;
+  --surface: #fffdf9;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), "Segoe UI", sans-serif;
+}
+
+.page-atmosphere {
+  background-image:
+    radial-gradient(1200px 540px at 8% -12%, rgba(240, 198, 150, 0.42), transparent 68%),
+    radial-gradient(1000px 500px at 100% -18%, rgba(132, 197, 192, 0.33), transparent 72%),
+    linear-gradient(180deg, #fffdf8 0%, #fff7ec 100%);
+  background-attachment: fixed;
+}
+
+.container-shell {
+  @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+}
+
+.brand-heading {
+  font-family: var(--font-brand), Georgia, serif;
+  letter-spacing: -0.02em;
+}
+
+.section-kicker {
+  @apply inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold tracking-[0.12em] uppercase;
+  border-color: var(--line);
+  color: var(--ocean-800);
+  background: #fff9ef;
+}
+
+.card-surface {
+  border: 1px solid var(--line);
+  background: color-mix(in oklab, var(--surface) 94%, white 6%);
+  box-shadow: 0 8px 30px rgba(40, 27, 15, 0.08);
+}
+
+.gradient-button {
+  background: linear-gradient(135deg, var(--terracotta-500), #d97745 50%, #cf6f3f 100%);
+  color: #fff;
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+}
+
+.gradient-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 26px rgba(157, 74, 45, 0.28);
+  filter: saturate(1.08);
+}
+
+.ghost-button {
+  border: 1px solid var(--line);
+  background: #fff9ef;
+  color: var(--foreground);
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.ghost-button:hover {
+  border-color: #d8af8a;
+  background: #fff3e3;
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(235, 215, 190, 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(235, 215, 190, 0.35) 1px, transparent 1px);
+  background-size: 38px 38px;
+}
+
+.fade-up {
+  opacity: 0;
+  animation: rise-in 0.55s ease forwards;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .page-atmosphere {
+    background-attachment: scroll;
+  }
+}
