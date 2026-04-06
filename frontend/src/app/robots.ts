@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://www.meetlocalguide.com/sitemap.xml",
+    sitemap: "https://meetlocalguide.com/sitemap.xml",
   };
 }

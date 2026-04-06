@@ -15,7 +15,7 @@ const playfairDisplay = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.meetlocalguide.com"),
+  metadataBase: new URL("https://meetlocalguide.com"),
   title: {
     default: "MeetLocalGuide | Discover Morocco with Local Experts",
     template: "%s | MeetLocalGuide",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
       "Discover Morocco with verified local guides and curated experiences.",
     type: "website",
     locale: "en_US",
-    url: "https://www.meetlocalguide.com",
+    url: "https://meetlocalguide.com",
   },
 };
 

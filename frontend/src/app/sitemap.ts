@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllTours, guides } from "@/lib/mock-data";
 
-const BASE_URL = "https://www.meetlocalguide.com";
+const BASE_URL = "https://meetlocalguide.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [

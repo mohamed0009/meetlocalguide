@@ -217,3 +217,65 @@
   - npm run build
   - IDE diagnostics check for globals.css and tour-card.tsx
 - Outcome: lint and production build passed; no diagnostics errors remain in updated frontend files.
+
+## 2026-04-06 20:44:04
+
+- Action: aligned production domain configuration to the provided canonical domain.
+- Paths:
+  - frontend/src/app/layout.tsx
+  - frontend/src/app/sitemap.ts
+  - frontend/src/app/robots.ts
+  - backend/src/main/resources/application.yml
+- Outcome: canonical metadata, Open Graph URL, sitemap/robots URLs updated to <https://meetlocalguide.com> and backend CORS defaults expanded for localhost + production domains.
+
+## 2026-04-06 20:44:04
+
+- Action: added canonical host redirect using Next.js proxy convention.
+- Path:
+  - frontend/src/proxy.ts
+- Outcome: <www.meetlocalguide.com> requests now redirect with HTTP 308 to meetlocalguide.com.
+
+## 2026-04-06 20:44:04
+
+- Action: validated frontend and backend after domain wiring.
+- Commands:
+  - npm run lint
+  - npm run build
+  - mvn -q -DskipTests compile
+- Outcome: frontend lint/build passed after updates; backend compile succeeded with system Maven.
+
+## 2026-04-06 20:55:12
+
+- Action: implemented payment module end-to-end in production style.
+- Paths:
+  - backend/src/main/java/com/meetlocalguide/platform/modules/payment/api/PaymentController.java
+  - backend/src/main/java/com/meetlocalguide/platform/modules/payment/api/dto/CreatePaymentRequest.java
+  - backend/src/main/java/com/meetlocalguide/platform/modules/payment/api/dto/PaymentResponse.java
+  - backend/src/main/java/com/meetlocalguide/platform/modules/payment/api/dto/PaymentStatusUpdateRequest.java
+  - backend/src/main/java/com/meetlocalguide/platform/modules/payment/application/PaymentService.java
+  - backend/src/main/java/com/meetlocalguide/platform/modules/payment/infrastructure/PaymentRepository.java
+  - backend/src/test/java/com/meetlocalguide/platform/modules/payment/api/PaymentControllerWebMvcTest.java
+  - backend/src/test/java/com/meetlocalguide/platform/modules/payment/application/PaymentServiceTest.java
+- Outcome: completed missing payment API/application/infrastructure layers with access control, status transition rules, booking synchronization on payment updates, and request validation.
+
+## 2026-04-06 20:55:12
+
+- Action: validated backend after payment module completion.
+- Commands:
+  - mvn test -DskipTests=false
+  - mvn -q -DskipTests package
+  - mvn -q -DskipTests compile
+  - backend layer scan for module completeness
+  - IDE diagnostics check for backend
+- Outcome: backend tests passed (35 run, 0 failures, 0 errors, 4 skipped due Docker absence), package/compile passed, diagnostics clean, and all modules now have api/application/infrastructure/domain layers.
+
+## 2026-04-06 20:46:47
+
+- Action: ran backend full validation and completeness scan on source/test modules.
+- Commands:
+  - mvn test -DskipTests=false
+  - mvn -q -DskipTests package
+  - backend structure scan for api/application/infrastructure/domain per module
+  - unresolved marker scan (TODO/FIXME/NotImplemented/UnsupportedOperationException)
+  - IDE diagnostics check for backend folder
+- Outcome: test/build checks passed (25 tests, 0 failures, 0 errors, 4 skipped due unavailable Docker); no backend diagnostics errors; no unresolved code markers found; one structural gap identified where payment module currently includes domain only without api/application/infrastructure layers.

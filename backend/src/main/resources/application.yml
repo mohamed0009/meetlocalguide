@@ -26,6 +26,8 @@ app:
       refresh-token-days: ${APP_JWT_REFRESH_TOKEN_DAYS:30}
     cors:
       allowed-origins:
-        - ${APP_CORS_ALLOWED_ORIGIN:http://localhost:3000}
+        - http://localhost:3000
+        - https://meetlocalguide.com
+        - https://www.meetlocalguide.com
     rate-limit:
       auth-requests-per-minute: ${APP_AUTH_RATE_LIMIT_PER_MINUTE:30}
