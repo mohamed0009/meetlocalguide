@@ -1,0 +1,48 @@
+services:
+  backend:
+    image: ${BACKEND_IMAGE:?Set BACKEND_IMAGE}
+    container_name: meetlocalguide-backend
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SERVER_PORT: 8080
+      DB_URL: ${DB_URL:?Set DB_URL}
+      DB_USERNAME: ${DB_USERNAME:?Set DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD}
+      APP_JWT_ISSUER: ${APP_JWT_ISSUER:?Set APP_JWT_ISSUER}
+      APP_JWT_SECRET: ${APP_JWT_SECRET:?Set APP_JWT_SECRET}
+      APP_CORS_ALLOWED_ORIGIN_PRIMARY: ${APP_CORS_ALLOWED_ORIGIN_PRIMARY:-https://meetlocalguide.com}
+      APP_CORS_ALLOWED_ORIGIN_SECONDARY: ${APP_CORS_ALLOWED_ORIGIN_SECONDARY:-https://www.meetlocalguide.com}
+    ports:
+      - "${BACKEND_PORT:-8080}:8080"
+    restart: unless-stopped
+
+  frontend:
+    image: ${FRONTEND_IMAGE:?Set FRONTEND_IMAGE}
+    container_name: meetlocalguide-frontend
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      HOSTNAME: 0.0.0.0
+      NEXT_PUBLIC_API_BASE_URL: ${NEXT_PUBLIC_API_BASE_URL:?Set NEXT_PUBLIC_API_BASE_URL}
+    depends_on:
+      - backend
+    ports:
+      - "${FRONTEND_PORT:-3000}:3000"
+    restart: unless-stopped
+
+  postgres:
+    profiles: ["with-postgres"]
+    image: postgres:16-alpine
+    container_name: meetlocalguide-postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-meetlocalguide}
+      POSTGRES_USER: ${POSTGRES_USER:-meetlocalguide}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-meetlocalguide}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

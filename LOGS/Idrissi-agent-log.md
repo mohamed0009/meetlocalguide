@@ -327,3 +327,43 @@
 - Commands:
   - mvn clean package -DskipTests=false
 - Outcome: build succeeded and jar artifact generated; tests summary was 35 run, 0 failures, 0 errors, 4 skipped due unavailable local Docker runtime for Testcontainers.
+
+## 2026-04-06 21:20:13
+
+- Action: added Docker containerization and CI image publishing setup for backend/frontend and future VPS deployment.
+- Paths:
+  - backend/Dockerfile
+  - backend/.dockerignore
+  - frontend/Dockerfile
+  - frontend/.dockerignore
+  - frontend/next.config.ts
+  - docker-compose.yml
+  - docker-compose.vps.yml
+  - .github/workflows/docker-publish.yml
+  - .env.example
+  - docs/deployment/docker.md
+- Outcome: multi-stage Docker builds added for Java and Next.js apps, local and VPS compose stacks added, GHCR publish workflow created with multi-arch build support, and deployment/env documentation added.
+
+## 2026-04-06 21:20:13
+
+- Action: validated Docker-related project changes.
+- Commands:
+  - npm run build (frontend)
+  - IDE diagnostics check for Docker/compose/workflow/next config files
+- Outcome: frontend production build succeeded and diagnostics reported no errors for all Docker, compose, and workflow files.
+
+## 2026-04-06 21:21:53
+
+- Action: performed runtime validation checks for Docker compose and attempted local image build.
+- Commands:
+  - docker compose -f docker-compose.yml config
+  - docker compose --env-file .env.example -f docker-compose.vps.yml config
+  - docker build -t meetlocalguide-backend:test ./backend
+- Outcome: both compose files parsed successfully; local Docker image build could not run because Docker Desktop daemon was unavailable on this machine (missing dockerDesktopLinuxEngine pipe).
+
+## 2026-04-06 21:22:38
+
+- Action: fixed Docker deployment documentation markdown lint compatibility.
+- Path:
+  - docs/deployment/docker.md
+- Outcome: replaced angle-bracket placeholders with plain placeholders; diagnostics now report no markdown errors.
