@@ -367,3 +367,15 @@
 - Path:
   - docs/deployment/docker.md
 - Outcome: replaced angle-bracket placeholders with plain placeholders; diagnostics now report no markdown errors.
+
+## 2026-04-08 22:12:54
+
+- Action: started frontend/backend services for local run request and resolved backend startup blockers.
+- Paths:
+  - backend/src/main/java/com/meetlocalguide/platform/config/security/SecurityConfig.java
+- Commands:
+  - npm run dev (frontend)
+  - mvn spring-boot:run (backend)
+  - psql/createdb via local PostgreSQL 18 binaries to create `meetlocalguide` and `meetlocalguide_test`
+  - Invoke-WebRequest checks for `http://localhost:8080/actuator/health` and `http://localhost:3000`
+- Outcome: fixed SecurityConfig circular dependency by method-level JwtAuthenticationFilter injection; frontend started on port 3000; backend started on port 8080 with local override (`SPRING_FLYWAY_ENABLED=false`, `SPRING_JPA_HIBERNATE_DDL_AUTO=update`) due Flyway/PostgreSQL 18 compatibility limit; both services returned HTTP 200.

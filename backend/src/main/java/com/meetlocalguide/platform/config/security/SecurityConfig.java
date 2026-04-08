@@ -36,13 +36,13 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableConfigurationProperties({ JwtProperties.class, CorsProperties.class, RateLimitProperties.class })
 public class SecurityConfig {
 
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final AuthRateLimitFilter authRateLimitFilter;
     private final UserAccountRepository userAccountRepository;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http,
-            DaoAuthenticationProvider daoAuthenticationProvider)
+            DaoAuthenticationProvider daoAuthenticationProvider,
+            JwtAuthenticationFilter jwtAuthenticationFilter)
             throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
