@@ -31,6 +31,8 @@ export type Tour = {
   includes: string[];
   meetingPoint: string;
   featured: boolean;
+  tags: string[];
+  spots: number;
 };
 
 export const guides: Guide[] = [
@@ -48,7 +50,7 @@ export const guides: Guide[] = [
     hourlyRateUsd: 30,
     specialties: ["Atlas villages", "Hiking", "Berber culture"],
     heroImage:
-      "https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?auto=format&fit=crop&w=1200&q=80",
+      "/images/DSC08508-3.jpg",
   },
   {
     slug: "salma-medina",
@@ -64,7 +66,7 @@ export const guides: Guide[] = [
     hourlyRateUsd: 28,
     specialties: ["Food walks", "Artisan studios", "Medina navigation"],
     heroImage:
-      "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=80",
+      "/images/DSC08616-28.jpg",
   },
   {
     slug: "nora-desert",
@@ -80,7 +82,7 @@ export const guides: Guide[] = [
     hourlyRateUsd: 32,
     specialties: ["Desert camps", "Camel routes", "Photography stops"],
     heroImage:
-      "https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=1200&q=80",
+      "/images/DSC08706-53.jpg",
   },
   {
     slug: "hamza-chefchaouen",
@@ -96,7 +98,7 @@ export const guides: Guide[] = [
     hourlyRateUsd: 24,
     specialties: ["Photo tours", "Blue city routes", "Sunrise points"],
     heroImage:
-      "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80",
+      "/images/DSC08975-56.jpg",
   },
 ];
 
@@ -114,11 +116,11 @@ export const tours: Tour[] = [
     totalReviews: 152,
     guideSlug: "nora-desert",
     coverImage:
-      "https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=1200&q=80",
+      "/images/DSC09467-3.jpg",
     gallery: [
-      "https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1200&q=80",
+      "/images/DSC09467-3.jpg",
+      "/images/DSC09468-4.jpg",
+      "/images/DSC09470-5.jpg",
     ],
     highlights: [
       "Sunrise viewpoint over ochre dunes",
@@ -128,6 +130,8 @@ export const tours: Tour[] = [
     includes: ["Private transport", "Lunch", "Mineral water", "Photography pauses"],
     meetingPoint: "Jemaa el-Fnaa south gate",
     featured: true,
+    tags: ["Desert", "Cultural"],
+    spots: 3,
   },
   {
     slug: "fes-medina-storywalk",
@@ -142,11 +146,11 @@ export const tours: Tour[] = [
     totalReviews: 203,
     guideSlug: "salma-medina",
     coverImage:
-      "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=80",
+      "/images/DSC09418-74.jpg",
     gallery: [
-      "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1200&q=80",
+      "/images/DSC09418-74.jpg",
+      "/images/DSC09413-71.jpg",
+      "/images/DSC09414-72.jpg",
     ],
     highlights: [
       "Morning bakery tasting",
@@ -156,6 +160,8 @@ export const tours: Tour[] = [
     includes: ["Guide", "Tasting samples", "Workshop entry"],
     meetingPoint: "Bab Bou Jeloud fountain",
     featured: true,
+    tags: ["Medina", "Food"],
+    spots: 5,
   },
   {
     slug: "atlas-mountain-daybreak",
@@ -170,11 +176,11 @@ export const tours: Tour[] = [
     totalReviews: 174,
     guideSlug: "yassine-atlas",
     coverImage:
-      "https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?auto=format&fit=crop&w=1200&q=80",
+      "/images/Atlas Mountains in spring Morocco.jpg",
     gallery: [
-      "https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=1200&q=80",
+      "/images/Atlas Mountains in spring Morocco.jpg",
+      "/images/DSC07748-1.jpg",
+      "/images/DSC07826-36.jpg",
     ],
     highlights: [
       "Guided ridge hike with map brief",
@@ -184,6 +190,8 @@ export const tours: Tour[] = [
     includes: ["Transport", "Lunch", "Guide assistance", "Trail support"],
     meetingPoint: "Koutoubia parking lane",
     featured: true,
+    tags: ["Hiking", "Nature"],
+    spots: 4,
   },
   {
     slug: "chefchaouen-blue-alleys",
@@ -198,11 +206,11 @@ export const tours: Tour[] = [
     totalReviews: 98,
     guideSlug: "hamza-chefchaouen",
     coverImage:
-      "https://images.unsplash.com/photo-1493558103817-58b2924bce98?auto=format&fit=crop&w=1200&q=80",
+      "/images/DSC09308-36.jpg",
     gallery: [
-      "https://images.unsplash.com/photo-1493558103817-58b2924bce98?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1526778548025-fa2f459cd5ce?auto=format&fit=crop&w=1200&q=80",
+      "/images/DSC09308-36.jpg",
+      "/images/DSC09306-35.jpg",
+      "/images/DSC09301-33.jpg",
     ],
     highlights: [
       "Blue quarter walking route",
@@ -212,6 +220,8 @@ export const tours: Tour[] = [
     includes: ["Guide", "Photo route map"],
     meetingPoint: "Plaza Uta el-Hammam",
     featured: false,
+    tags: ["Photography", "Walking"],
+    spots: 8,
   },
   {
     slug: "essaouira-coastal-rhythm",
@@ -226,11 +236,11 @@ export const tours: Tour[] = [
     totalReviews: 87,
     guideSlug: "salma-medina",
     coverImage:
-      "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=1200&q=80",
+      "/images/DSC08368-Pano-45.jpg",
     gallery: [
-      "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80",
+      "/images/DSC08368-Pano-45.jpg",
+      "/images/DSC08362-44.jpg",
+      "/images/DSC08361-43.jpg",
     ],
     highlights: [
       "Fresh harbor fish market stop",
@@ -240,6 +250,8 @@ export const tours: Tour[] = [
     includes: ["Guide", "Lunch reservation", "Local tasting"],
     meetingPoint: "Port gate entrance",
     featured: false,
+    tags: ["Coastal", "Cultural"],
+    spots: 6,
   },
   {
     slug: "sahara-camp-under-stars",
@@ -254,11 +266,11 @@ export const tours: Tour[] = [
     totalReviews: 261,
     guideSlug: "nora-desert",
     coverImage:
-      "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1200&q=80",
+      "/images/DSC08483-61.jpg",
     gallery: [
-      "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1518972559570-0d0e3bf8f63f?auto=format&fit=crop&w=1200&q=80",
+      "/images/DSC08483-61.jpg",
+      "/images/DSC08485-62.jpg",
+      "/images/DSC09009-Pano-3.jpg",
     ],
     highlights: [
       "Sunset camel caravan",
@@ -268,6 +280,8 @@ export const tours: Tour[] = [
     includes: ["Camp stay", "Dinner and breakfast", "Guide", "4x4 transfers"],
     meetingPoint: "Merzouga center meeting lot",
     featured: false,
+    tags: ["Overnight", "Desert"],
+    spots: 2,
   },
 ];
 
@@ -289,6 +303,10 @@ export function getGuideBySlug(slug: string): Guide | undefined {
 
 export function getToursByGuide(guideSlug: string): Tour[] {
   return tours.filter((tour) => tour.guideSlug === guideSlug);
+}
+
+export function getAllGuides(): Guide[] {
+  return guides;
 }
 
 export function getCities(): string[] {

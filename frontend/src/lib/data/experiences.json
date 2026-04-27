@@ -1,0 +1,146 @@
+[
+    {
+        "id": "exp-marrakech-desert",
+        "slug": "marrakech-desert-immersion",
+        "title": "Marrakech Desert Immersion",
+        "summary": "Private desert route with scenic stops, storytelling, and a curated camp lunch.",
+        "city": "Marrakech",
+        "region": "Marrakech-Safi",
+        "category": "Desert",
+        "rating": 4.9,
+        "reviewCount": 152,
+        "priceMad": 1250,
+        "durationHours": 10,
+        "maxGroupSize": 8,
+        "meetingPoint": "Jemaa el-Fnaa South Gate",
+        "coordinates": {
+            "lat": 31.6295,
+            "lng": -7.9811
+        },
+        "images": [
+            "/images/DSC09467-3.jpg",
+            "/images/DSC09468-4.jpg",
+            "/images/DSC09470-5.jpg"
+        ]
+    },
+    {
+        "id": "exp-fes-medina",
+        "slug": "fes-medina-storywalk",
+        "title": "Fes Medina Storywalk",
+        "summary": "Craft, cuisine, and architecture route through hidden medina corridors.",
+        "city": "Fes",
+        "region": "Fes-Meknes",
+        "category": "Cultural",
+        "rating": 4.8,
+        "reviewCount": 203,
+        "priceMad": 490,
+        "durationHours": 4,
+        "maxGroupSize": 10,
+        "meetingPoint": "Bab Bou Jeloud Fountain",
+        "coordinates": {
+            "lat": 34.0181,
+            "lng": -5.0078
+        },
+        "images": [
+            "/images/DSC09418-74.jpg",
+            "/images/DSC09413-71.jpg",
+            "/images/DSC09414-72.jpg"
+        ]
+    },
+    {
+        "id": "exp-atlas-daybreak",
+        "slug": "atlas-mountain-daybreak",
+        "title": "Atlas Mountain Daybreak",
+        "summary": "Moderate mountain trek with village lunch and panoramic ridgeline views.",
+        "city": "Marrakech",
+        "region": "Marrakech-Safi",
+        "category": "Adventure",
+        "rating": 4.9,
+        "reviewCount": 174,
+        "priceMad": 950,
+        "durationHours": 8,
+        "maxGroupSize": 6,
+        "meetingPoint": "Koutoubia Parking Lane",
+        "coordinates": {
+            "lat": 31.4106,
+            "lng": -7.8035
+        },
+        "images": [
+            "/images/Atlas Mountains in spring Morocco.jpg",
+            "/images/DSC07748-1.jpg",
+            "/images/DSC07826-36.jpg"
+        ]
+    },
+    {
+        "id": "exp-chefchaouen-alleys",
+        "slug": "chefchaouen-blue-alleys",
+        "title": "Chefchaouen Blue Alleys",
+        "summary": "Photo-oriented walk through iconic blue streets and hidden corners.",
+        "city": "Chefchaouen",
+        "region": "Tanger-Tetouan-Al Hoceima",
+        "category": "Cultural",
+        "rating": 4.7,
+        "reviewCount": 98,
+        "priceMad": 380,
+        "durationHours": 3,
+        "maxGroupSize": 12,
+        "meetingPoint": "Plaza Uta el-Hammam",
+        "coordinates": {
+            "lat": 35.1688,
+            "lng": -5.2699
+        },
+        "images": [
+            "/images/DSC09308-36.jpg",
+            "/images/DSC09306-35.jpg",
+            "/images/DSC09301-33.jpg"
+        ]
+    },
+    {
+        "id": "exp-essaouira-coastal",
+        "slug": "essaouira-coastal-rhythm",
+        "title": "Essaouira Coastal Rhythm",
+        "summary": "Harbor walk, medina walls, and ocean-view tasting moments.",
+        "city": "Essaouira",
+        "region": "Marrakech-Safi",
+        "category": "Food",
+        "rating": 4.6,
+        "reviewCount": 87,
+        "priceMad": 720,
+        "durationHours": 6,
+        "maxGroupSize": 10,
+        "meetingPoint": "Port Gate Entrance",
+        "coordinates": {
+            "lat": 31.5085,
+            "lng": -9.7595
+        },
+        "images": [
+            "/images/DSC08368-Pano-45.jpg",
+            "/images/DSC08362-44.jpg",
+            "/images/DSC08361-43.jpg"
+        ]
+    },
+    {
+        "id": "exp-sahara-stars",
+        "slug": "sahara-camp-under-stars",
+        "title": "Sahara Camp Under Stars",
+        "summary": "Overnight premium camp experience with sunset dunes and stargazing.",
+        "city": "Merzouga",
+        "region": "Draa-Tafilalet",
+        "category": "Desert",
+        "rating": 4.9,
+        "reviewCount": 261,
+        "priceMad": 2100,
+        "durationHours": 20,
+        "maxGroupSize": 6,
+        "meetingPoint": "Merzouga Center Meeting Lot",
+        "coordinates": {
+            "lat": 31.0994,
+            "lng": -4.0126
+        },
+        "images": [
+            "/images/DSC08483-61.jpg",
+            "/images/DSC08485-62.jpg",
+            "/images/DSC09009-Pano-3.jpg"
+        ]
+    }
+]

@@ -6,6 +6,7 @@ const BASE_URL = "https://meetlocalguide.com";
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
     "",
+    "/explore",
     "/tours",
     "/auth/login",
     "/auth/register",
