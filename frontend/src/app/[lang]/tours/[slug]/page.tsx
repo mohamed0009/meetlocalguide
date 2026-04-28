@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Check, Clock, MapPin, Star, Users } from "lucide-react";
+import { ArrowLeft, Check, Clock, MapPin, Star } from "lucide-react";
 import { formatUsd } from "@/lib/format";
 import { getAllTours, getGuideBySlug, getTourBySlug } from "@/lib/mock-data";
 
@@ -231,13 +231,13 @@ export default async function TourDetailPage({ params }: TourDetailPageProps) {
                             </p>
                             <p className="text-xs" style={{ color: "var(--text-muted)" }}>per person</p>
 
-                            <button
+                            <Link
+                                href={`/tours/${tour.slug}/book`}
                                 id="tour-reserve-btn"
-                                type="button"
-                                className="glow-btn mt-5 w-full rounded-xl py-3 text-sm font-semibold"
+                                className="glow-btn mt-5 block w-full rounded-xl py-3 text-sm font-semibold text-center"
                             >
                                 Reserve This Tour
-                            </button>
+                            </Link>
                             <p className="mt-3 text-center text-xs" style={{ color: "var(--text-muted)" }}>
                                 Free cancellation up to 48 hours before start.
                             </p>

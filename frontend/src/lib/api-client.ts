@@ -227,3 +227,18 @@ export type PagedResponse<T> = {
   number: number;
   size: number;
 };
+
+export type FavoriteSummary = {
+  favoriteId: string;
+  tourId: string;
+  tourSlug: string;
+  tourTitle: string;
+  tourShortDescription: string;
+  tourCity: string;
+  tourDurationMinutes: number;
+  tourBasePriceAmount: number;
+  tourBaseCurrency: string;
+  tourAverageRating: number | null;
+  tourTotalReviews: number;
+  savedAt: string;
+};

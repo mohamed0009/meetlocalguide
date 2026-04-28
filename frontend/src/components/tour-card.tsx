@@ -7,13 +7,15 @@ import { motion } from "framer-motion";
 import { Clock, Star, ArrowRight } from "lucide-react";
 import { formatUsd } from "@/lib/format";
 import { getGuideBySlug, type Tour } from "@/lib/mock-data";
+import { FavoriteButton } from "@/components/favorite-button";
 
 type TourCardProps = {
     tour: Tour;
     index?: number;
+    tourId?: string;
 };
 
-export function TourCard({ tour, index = 0 }: TourCardProps) {
+export function TourCard({ tour, index = 0, tourId }: TourCardProps) {
     const guide = getGuideBySlug(tour.guideSlug);
     const [hovered, setHovered] = useState(false);
 
@@ -65,9 +67,16 @@ export function TourCard({ tour, index = 0 }: TourCardProps) {
                     {tour.city}
                 </div>
 
+                {/* Favorite button */}
+                {tourId && (
+                    <div className="absolute right-3 top-3 z-10">
+                        <FavoriteButton tourId={tourId} size="sm" />
+                    </div>
+                )}
+
                 {/* Rating badge */}
                 <div
-                    className="absolute right-3 top-3 flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold"
+                    className={`absolute flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold ${tourId ? "right-12 top-3" : "right-3 top-3"}`}
                     style={{
                         background: "rgba(8,8,14,0.75)",
                         backdropFilter: "blur(8px)",
