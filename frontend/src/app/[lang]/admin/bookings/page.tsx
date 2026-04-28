@@ -61,7 +61,7 @@ export default function AdminBookingsPage() {
 
     return (
         <div className="p-6 sm:p-8 space-y-6">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                     <span className="kicker">Admin</span>
                     <h1 className="brand-font mt-1 text-2xl font-700" style={{ color: "var(--text-primary)" }}>
@@ -71,7 +71,7 @@ export default function AdminBookingsPage() {
                 <button
                     id="admin-bookings-refresh"
                     onClick={load}
-                    className="ghost-btn flex items-center gap-2 rounded-xl px-4 py-2 text-xs"
+                    className="ghost-btn flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2 text-xs sm:w-auto touch-target"
                 >
                     <RefreshCw className="h-3.5 w-3.5" />
                     Refresh
@@ -158,7 +158,7 @@ export default function AdminBookingsPage() {
                                             disabled={busy || b.status === "CANCELLED"}
                                             value={b.status}
                                             onChange={e => updateStatus(b.id, e.target.value)}
-                                            className="dark-input rounded-lg px-2 py-1.5 text-xs"
+                                            className="dark-input h-9 w-full rounded-lg px-2 py-1.5 text-xs sm:w-auto"
                                             style={{ fontSize: "11px" }}
                                         >
                                             {UPDATABLE_STATUSES.map(s => (
@@ -169,7 +169,7 @@ export default function AdminBookingsPage() {
                                             <button
                                                 disabled={busy}
                                                 onClick={() => cancelBooking(b.id)}
-                                                className="rounded-lg px-2.5 py-1.5 text-[10px] font-semibold transition-colors"
+                                                className="rounded-lg px-2.5 py-1.5 text-[10px] font-semibold transition-colors w-full sm:w-auto touch-target"
                                                 style={{ background: "rgba(220,38,38,0.08)", color: "#dc2626", border: "1px solid rgba(220,38,38,0.2)" }}
                                             >
                                                 {busy ? "…" : "Cancel"}

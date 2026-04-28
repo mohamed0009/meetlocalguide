@@ -78,7 +78,7 @@ export default async function GuideProfilePage({ params }: GuidePageProps) {
                         {/* Guide info */}
                         <div className="space-y-5 p-6 sm:p-10">
                             <span className="kicker">Guide Profile</span>
-                            <h1 className="brand-font text-3xl font-700 sm:text-4xl" style={{ color: "var(--text-primary)" }}>
+                            <h1 className="brand-font text-2xl font-700 sm:text-4xl" style={{ color: "var(--text-primary)" }}>
                                 {guide.name}
                             </h1>
                             <p className="text-base" style={{ color: "var(--text-secondary)" }}>
@@ -136,7 +136,7 @@ export default async function GuideProfilePage({ params }: GuidePageProps) {
                             <button
                                 id="guide-book-btn"
                                 type="button"
-                                className="glow-btn rounded-xl px-7 py-3 text-sm font-semibold"
+                                className="glow-btn w-full rounded-xl px-7 py-3 text-sm font-semibold sm:w-auto touch-target"
                             >
                                 Book This Guide
                             </button>

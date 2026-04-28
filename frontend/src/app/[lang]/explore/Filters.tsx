@@ -102,7 +102,7 @@ export default function Filters({
                     type="button"
                     id="filters-reset-btn"
                     onClick={onReset}
-                    className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-semibold transition-all duration-200"
+                    className="flex w-full items-center justify-center gap-1.5 rounded-lg px-3 py-2 text-xs font-semibold transition-all duration-200 sm:w-auto touch-target"
                     style={{
                         background: "var(--bg-surface)",
                         border: "1px solid var(--border)",
@@ -126,7 +126,7 @@ export default function Filters({
             <form
                 onSubmit={(e) => e.preventDefault()}
                 aria-label="Experience filters"
-                className="grid gap-4 md:grid-cols-2 xl:grid-cols-6"
+                className="grid gap-3 sm:gap-4 md:grid-cols-2 xl:grid-cols-6"
             >
                 {/* Search */}
                 <div className="xl:col-span-2">
@@ -136,6 +136,7 @@ export default function Filters({
                         id="filter-search"
                         aria-label="Search experiences"
                         placeholder="Desert, medina, food tour..."
+                        className="h-11"
                     />
                 </div>
 
@@ -147,7 +148,7 @@ export default function Filters({
                         control={control}
                         render={({ field }) => (
                             <Select onValueChange={field.onChange} value={field.value}>
-                                <SelectTrigger id="filter-city" aria-label="Filter by city">
+                                <SelectTrigger id="filter-city" aria-label="Filter by city" className="h-11">
                                     <SelectValue placeholder="All cities" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -171,7 +172,7 @@ export default function Filters({
                         control={control}
                         render={({ field }) => (
                             <Select onValueChange={field.onChange} value={field.value}>
-                                <SelectTrigger id="filter-category" aria-label="Filter by category">
+                                <SelectTrigger id="filter-category" aria-label="Filter by category" className="h-11">
                                     <SelectValue placeholder="All categories" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -195,7 +196,7 @@ export default function Filters({
                         control={control}
                         render={({ field }) => (
                             <Select onValueChange={field.onChange} value={field.value}>
-                                <SelectTrigger id="filter-price" aria-label="Filter by price range">
+                                <SelectTrigger id="filter-price" aria-label="Filter by price range" className="h-11">
                                     <SelectValue placeholder="Any price" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -218,7 +219,7 @@ export default function Filters({
                         control={control}
                         render={({ field }) => (
                             <Select onValueChange={field.onChange} value={field.value}>
-                                <SelectTrigger id="filter-duration" aria-label="Filter by duration">
+                                <SelectTrigger id="filter-duration" aria-label="Filter by duration" className="h-11">
                                     <SelectValue placeholder="Any duration" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -241,7 +242,7 @@ export default function Filters({
                         control={control}
                         render={({ field }) => (
                             <Select onValueChange={field.onChange} value={field.value}>
-                                <SelectTrigger id="filter-rating" aria-label="Filter by minimum rating">
+                                <SelectTrigger id="filter-rating" aria-label="Filter by minimum rating" className="h-11">
                                     <SelectValue placeholder="Any rating" />
                                 </SelectTrigger>
                                 <SelectContent>

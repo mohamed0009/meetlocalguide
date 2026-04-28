@@ -70,7 +70,7 @@ export default function BookingConfirmationPage() {
 
     return (
         <div className="page-wrapper">
-            <div className="shell py-14">
+            <div className="shell py-10 sm:py-14">
                 <div className="mx-auto max-w-2xl space-y-8">
                     {/* Success header */}
                     <div className="text-center space-y-4">
@@ -80,7 +80,7 @@ export default function BookingConfirmationPage() {
                         >
                             <CheckCircle className="h-9 w-9" style={{ color: "#16a34a" }} />
                         </div>
-                        <h1 className="brand-font text-3xl font-700" style={{ color: "var(--text-primary)" }}>
+                        <h1 className="brand-font text-2xl font-700 sm:text-3xl" style={{ color: "var(--text-primary)" }}>
                             Booking Received!
                         </h1>
                         <p className="text-sm" style={{ color: "var(--text-secondary)" }}>

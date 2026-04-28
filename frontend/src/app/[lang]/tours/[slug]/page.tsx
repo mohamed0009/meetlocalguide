@@ -95,7 +95,7 @@ export default async function TourDetailPage({ params }: TourDetailPageProps) {
                         width={1600}
                         height={900}
                         priority
-                        className="h-[300px] w-full object-cover sm:h-[440px]"
+                        className="h-[240px] w-full object-cover sm:h-[440px]"
                         style={{ display: "block" }}
                     />
                 </div>
@@ -207,7 +207,7 @@ export default async function TourDetailPage({ params }: TourDetailPageProps) {
                     <aside className="space-y-5 lg:sticky lg:top-24 lg:h-fit">
                         {/* Booking card */}
                         <div
-                            className="relative overflow-hidden rounded-2xl p-6"
+                            className="relative overflow-hidden rounded-2xl p-5 sm:p-6"
                             style={{
                                 background: "var(--bg-card)",
                                 border: "1px solid var(--border-accent)",
@@ -224,7 +224,7 @@ export default async function TourDetailPage({ params }: TourDetailPageProps) {
                                 Starting at
                             </p>
                             <p
-                                className="brand-font mt-1 text-4xl font-700"
+                                className="brand-font mt-1 text-3xl font-700 sm:text-4xl"
                                 style={{ color: "var(--accent)", textShadow: "0 0 20px var(--accent-glow)" }}
                             >
                                 {formatUsd(tour.priceUsd)}

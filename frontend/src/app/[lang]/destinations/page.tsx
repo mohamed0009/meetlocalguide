@@ -21,10 +21,10 @@ export default function DestinationsPage() {
   const tours = getAllTours();
 
   return (
-    <section className="shell py-14">
+    <section className="shell py-10 sm:py-14">
       <header className="mb-10">
         <span className="kicker">Destinations</span>
-        <h1 className="brand-font mt-3 text-4xl font-extrabold">Top Destinations in Morocco</h1>
+        <h1 className="brand-font mt-3 text-3xl font-extrabold sm:text-4xl">Top Destinations in Morocco</h1>
       </header>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -39,12 +39,15 @@ export default function DestinationsPage() {
                 className="object-cover"
               />
             </div>
-            <div className="p-5">
+            <div className="p-4 sm:p-5">
               <h2 className="text-xl font-bold">{city}</h2>
               <p className="mt-2 text-sm text-[var(--text-secondary)]">
                 {tours.filter((tour) => tour.city === city).length} experiences available
               </p>
-              <Link href={`/tours?city=${encodeURIComponent(city)}`} className="glow-btn mt-4 inline-block rounded-lg px-4 py-2 text-xs">
+              <Link
+                href={`/tours?city=${encodeURIComponent(city)}`}
+                className="glow-btn mt-4 inline-block w-full rounded-lg px-4 py-2 text-center text-xs sm:w-auto"
+              >
                 Explore {city}
               </Link>
             </div>

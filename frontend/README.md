@@ -20,6 +20,13 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Responsive UI Notes
+
+- Use the `shell` utility for consistent page gutters across breakpoints.
+- The `touch-target` helper in `src/app/globals.css` enforces 44px minimum hit areas on mobile.
+- Core breakpoints are `--bp-sm` (640px), `--bp-md` (768px), `--bp-lg` (1024px) for quick reference.
+- Prefer stacked layouts on small screens and progressive enhancement with `sm:` and `lg:` classes.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

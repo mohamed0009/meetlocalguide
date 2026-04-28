@@ -77,7 +77,7 @@ export default function RegisterPage() {
                         minLength={2}
                         value={displayName}
                         onChange={e => setDisplayName(e.target.value)}
-                        className="dark-input w-full rounded-xl px-3.5 py-2.5 text-sm"
+                        className="dark-input h-11 w-full rounded-xl px-3.5 py-2.5 text-sm"
                     />
                 </label>
 
@@ -90,7 +90,7 @@ export default function RegisterPage() {
                         required
                         value={email}
                         onChange={e => setEmail(e.target.value)}
-                        className="dark-input w-full rounded-xl px-3.5 py-2.5 text-sm"
+                        className="dark-input h-11 w-full rounded-xl px-3.5 py-2.5 text-sm"
                     />
                 </label>
 
@@ -104,7 +104,7 @@ export default function RegisterPage() {
                         minLength={8}
                         value={password}
                         onChange={e => setPassword(e.target.value)}
-                        className="dark-input w-full rounded-xl px-3.5 py-2.5 text-sm"
+                        className="dark-input h-11 w-full rounded-xl px-3.5 py-2.5 text-sm"
                     />
                     <p className="mt-1 text-[10px]" style={{ color: "var(--text-muted)" }}>
                         Min 8 chars — must include upper, lower, number, and special character.
@@ -130,7 +130,7 @@ export default function RegisterPage() {
                     id="register-submit-btn"
                     type="submit"
                     disabled={loading}
-                    className="glow-btn mt-1 w-full rounded-xl py-3 text-sm font-semibold disabled:opacity-60"
+                    className="glow-btn mt-1 w-full rounded-xl py-3 text-sm font-semibold disabled:opacity-60 touch-target"
                 >
                     {loading ? "Creating account…" : "Create Account"}
                 </button>

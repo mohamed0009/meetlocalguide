@@ -70,7 +70,7 @@ export default function BookTourPage() {
                     </p>
                     <Link
                         href={`/auth/login?next=/tours/${slug}/book`}
-                        className="glow-btn inline-flex rounded-xl px-8 py-3 text-sm font-semibold"
+                        className="glow-btn inline-flex w-full justify-center rounded-xl px-8 py-3 text-sm font-semibold sm:w-auto touch-target"
                     >
                         Log in
                     </Link>
@@ -126,7 +126,7 @@ export default function BookTourPage() {
                     <div className="space-y-6">
                         <div>
                             <span className="kicker">Reserve Now</span>
-                            <h1 className="brand-font mt-2 text-3xl font-700" style={{ color: "var(--text-primary)" }}>
+                            <h1 className="brand-font mt-2 text-2xl font-700 sm:text-3xl" style={{ color: "var(--text-primary)" }}>
                                 Book your experience
                             </h1>
                             <p className="mt-2 text-sm" style={{ color: "var(--text-secondary)" }}>
@@ -146,7 +146,7 @@ export default function BookTourPage() {
                         <form id="booking-form" onSubmit={handleSubmit} className="space-y-5">
                             {/* Dates */}
                             <div
-                                className="rounded-2xl p-6 space-y-4"
+                                className="rounded-2xl p-5 sm:p-6 space-y-4"
                                 style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
                             >
                                 <div className="flex items-center gap-2 mb-2">
@@ -166,7 +166,7 @@ export default function BookTourPage() {
                                             required
                                             value={startAt}
                                             onChange={e => setStartAt(e.target.value)}
-                                            className="dark-input w-full rounded-xl px-3.5 py-2.5 text-sm"
+                                            className="dark-input h-11 w-full rounded-xl px-3.5 py-2.5 text-sm"
                                         />
                                     </label>
                                     <label>
@@ -179,7 +179,7 @@ export default function BookTourPage() {
                                             required
                                             value={endAt}
                                             onChange={e => setEndAt(e.target.value)}
-                                            className="dark-input w-full rounded-xl px-3.5 py-2.5 text-sm"
+                                            className="dark-input h-11 w-full rounded-xl px-3.5 py-2.5 text-sm"
                                         />
                                     </label>
                                 </div>
@@ -187,7 +187,7 @@ export default function BookTourPage() {
 
                             {/* Participants */}
                             <div
-                                className="rounded-2xl p-6"
+                                className="rounded-2xl p-5 sm:p-6"
                                 style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
                             >
                                 <div className="flex items-center gap-2 mb-4">
@@ -196,12 +196,12 @@ export default function BookTourPage() {
                                         Participants
                                     </span>
                                 </div>
-                                <div className="flex items-center gap-4">
+                                <div className="flex flex-wrap items-center gap-3">
                                     <button
                                         type="button"
                                         id="participants-dec"
                                         onClick={() => setParticipants(Math.max(1, participants - 1))}
-                                        className="flex h-10 w-10 items-center justify-center rounded-xl text-lg font-bold transition-colors"
+                                        className="flex h-11 w-11 items-center justify-center rounded-xl text-lg font-bold transition-colors sm:h-10 sm:w-10 touch-target"
                                         style={{ background: "var(--bg-surface)", border: "1px solid var(--border)", color: "var(--text-primary)" }}
                                     >
                                         −
@@ -213,7 +213,7 @@ export default function BookTourPage() {
                                         type="button"
                                         id="participants-inc"
                                         onClick={() => setParticipants(Math.min(20, participants + 1))}
-                                        className="flex h-10 w-10 items-center justify-center rounded-xl text-lg font-bold transition-colors"
+                                        className="flex h-11 w-11 items-center justify-center rounded-xl text-lg font-bold transition-colors sm:h-10 sm:w-10 touch-target"
                                         style={{ background: "var(--bg-surface)", border: "1px solid var(--border)", color: "var(--text-primary)" }}
                                     >
                                         +
@@ -226,7 +226,7 @@ export default function BookTourPage() {
 
                             {/* Special requests */}
                             <div
-                                className="rounded-2xl p-6"
+                                className="rounded-2xl p-5 sm:p-6"
                                 style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
                             >
                                 <div className="flex items-center gap-2 mb-4">
@@ -256,7 +256,7 @@ export default function BookTourPage() {
                                 id="booking-submit-btn"
                                 type="submit"
                                 disabled={loading || authed === null}
-                                className="glow-btn w-full rounded-xl py-3.5 text-sm font-semibold disabled:opacity-60"
+                                className="glow-btn w-full rounded-xl py-3.5 text-sm font-semibold disabled:opacity-60 touch-target"
                             >
                                 {loading ? "Reserving…" : `Reserve · ${formatUsd(totalUsd)}`}
                             </button>
@@ -269,7 +269,7 @@ export default function BookTourPage() {
                     {/* Summary sidebar */}
                     <aside className="lg:sticky lg:top-24 lg:h-fit space-y-4">
                         <div
-                            className="relative overflow-hidden rounded-2xl p-6"
+                            className="relative overflow-hidden rounded-2xl p-5 sm:p-6"
                             style={{ background: "var(--bg-card)", border: "1px solid var(--border-accent)" }}
                         >
                             <div
@@ -295,7 +295,7 @@ export default function BookTourPage() {
                             ))}
                             <div className="flex items-center justify-between mt-3 pt-1">
                                 <span className="text-sm font-semibold" style={{ color: "var(--text-primary)" }}>Total</span>
-                                <span className="brand-font text-xl font-700" style={{ color: "var(--accent)" }}>
+                                <span className="brand-font text-lg font-700 sm:text-xl" style={{ color: "var(--accent)" }}>
                                     {formatUsd(totalUsd)}
                                 </span>
                             </div>

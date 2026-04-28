@@ -14,24 +14,24 @@ const benefits = [
 
 export default function BecomeAGuidePage() {
   return (
-    <section className="shell py-14">
+    <section className="shell py-10 sm:py-14">
       <span className="kicker">Partner Program</span>
-      <h1 className="brand-font mt-3 text-4xl font-extrabold">Become a local guide on MeetLocalGuide</h1>
+      <h1 className="brand-font mt-3 text-3xl font-extrabold sm:text-4xl">Become a local guide on MeetLocalGuide</h1>
       <p className="mt-4 max-w-2xl text-sm text-[var(--text-secondary)]">
         Build your profile, publish experiences, and grow your bookings with a premium global audience.
       </p>
       <div className="mt-8 grid gap-5 md:grid-cols-3">
         {benefits.map((item) => (
-          <article key={item} className="glass-card rounded-2xl p-5 text-sm">
+          <article key={item} className="glass-card rounded-2xl p-4 sm:p-5 text-sm">
             {item}
           </article>
         ))}
       </div>
-      <div className="mt-8 flex gap-3">
-        <Link href="/auth/register" className="glow-btn rounded-xl px-6 py-3 text-sm">
+      <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+        <Link href="/auth/register" className="glow-btn w-full rounded-xl px-6 py-3 text-center text-sm sm:w-auto touch-target">
           Apply Now
         </Link>
-        <Link href="/contact" className="ghost-btn rounded-xl px-6 py-3 text-sm">
+        <Link href="/contact" className="ghost-btn w-full rounded-xl px-6 py-3 text-center text-sm sm:w-auto touch-target">
           Talk to Partnerships
         </Link>
       </div>

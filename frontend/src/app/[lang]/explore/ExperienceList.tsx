@@ -135,7 +135,7 @@ export default function ExperienceList() {
             <div className="grid gap-5 xl:grid-cols-[minmax(0,1.3fr)_minmax(360px,0.7fr)]">
                 {/* Map panel */}
                 <div
-                    className="rounded-2xl p-2.5"
+                    className="rounded-2xl p-2.5 min-h-[320px] sm:min-h-[440px]"
                     style={{
                         background: "var(--bg-card)",
                         border: "1px solid var(--border)",
@@ -214,7 +214,7 @@ function LoadingState() {
                 className="rounded-2xl p-2.5"
                 style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
             >
-                <div className="skeleton h-[58vh] min-h-[440px] rounded-xl" />
+                <div className="skeleton h-[46vh] min-h-[320px] rounded-xl sm:h-[58vh] sm:min-h-[440px]" />
             </div>
 
             <div className="space-y-4">
@@ -252,7 +252,7 @@ function LoadingState() {
 
 function MapSkeleton() {
     return (
-        <div className="skeleton flex h-[58vh] min-h-[440px] items-center justify-center rounded-xl">
+        <div className="skeleton flex h-[46vh] min-h-[320px] items-center justify-center rounded-xl sm:h-[58vh] sm:min-h-[440px]">
             <div
                 className="h-8 w-8 animate-spin rounded-full border-2 border-t-transparent"
                 style={{ borderColor: "var(--border)", borderTopColor: "var(--accent)" }}

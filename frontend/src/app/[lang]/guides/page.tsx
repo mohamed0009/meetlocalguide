@@ -45,7 +45,7 @@ export default async function GuidesPage({
                 }}
             >
                 <div className="absolute inset-0 hero-grid-lines opacity-30" />
-                <div className="shell relative z-10 py-14">
+                <div className="shell relative z-10 py-10 sm:py-14">
                     <span className="kicker">Our Experts</span>
                     <h1
                         className="brand-font mt-3 text-3xl font-700 leading-tight sm:text-4xl lg:text-5xl"
@@ -66,7 +66,7 @@ export default async function GuidesPage({
                 {/* Filter form */}
                 <form
                     id="guides-filter-form"
-                    className="rounded-2xl p-5 sm:p-6"
+                    className="rounded-2xl p-4 sm:p-6"
                     style={{
                         background: "var(--bg-card)",
                         border: "1px solid var(--border)",
@@ -84,7 +84,7 @@ export default async function GuidesPage({
                                 id="guides-search-input"
                                 defaultValue={query}
                                 placeholder="Name or specialty…"
-                                className="dark-input w-full rounded-xl px-3.5 py-2.5 text-sm"
+                                className="dark-input h-11 w-full rounded-xl px-3.5 py-2.5 text-sm"
                             />
                         </label>
 
@@ -96,7 +96,7 @@ export default async function GuidesPage({
                                 name="city"
                                 id="guides-city-select"
                                 defaultValue={city ?? ""}
-                                className="dark-input w-full rounded-xl px-3.5 py-2.5 text-sm"
+                                className="dark-input h-11 w-full rounded-xl px-3.5 py-2.5 text-sm"
                             >
                                 <option value="">All cities</option>
                                 {cities.map((c) => (
@@ -105,18 +105,18 @@ export default async function GuidesPage({
                             </select>
                         </label>
 
-                        <div className="flex items-end gap-3">
+                        <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
                             <button
                                 type="submit"
                                 id="guides-apply-filter-btn"
-                                className="glow-btn flex-1 rounded-xl py-2.5 text-sm"
+                                className="glow-btn w-full rounded-xl py-2.5 text-sm sm:flex-1 touch-target"
                             >
                                 Apply
                             </button>
                             <Link
                                 href="/guides"
                                 id="guides-clear-btn"
-                                className="ghost-btn flex-1 rounded-xl py-2.5 text-sm text-center"
+                                className="ghost-btn w-full rounded-xl py-2.5 text-sm text-center sm:flex-1 touch-target"
                             >
                                 Clear
                             </Link>
@@ -151,7 +151,7 @@ export default async function GuidesPage({
                                     style={{ background: "linear-gradient(90deg, var(--accent), var(--accent-secondary))" }}
                                 />
 
-                                <div className="p-6">
+                                <div className="p-4 sm:p-6">
                                     {/* Avatar + name */}
                                     <div className="flex items-center gap-4 mb-4">
                                         <div
@@ -174,7 +174,7 @@ export default async function GuidesPage({
                                     </div>
 
                                     {/* Stats row */}
-                                    <div className="flex items-center gap-4 mb-4 text-xs" style={{ color: "var(--text-secondary)" }}>
+                                    <div className="flex flex-wrap items-center gap-3 mb-4 text-xs" style={{ color: "var(--text-secondary)" }}>
                                         <span className="flex items-center gap-1">
                                             <Star className="h-3.5 w-3.5" style={{ color: "var(--accent)" }} />
                                             <span className="font-semibold">{guide.rating.toFixed(1)}</span>
@@ -214,7 +214,7 @@ export default async function GuidesPage({
                                     </div>
 
                                     {/* CTA row */}
-                                    <div className="mt-5 flex items-center justify-between border-t pt-4" style={{ borderColor: "var(--border-subtle)" }}>
+                                    <div className="mt-5 flex flex-col gap-2 border-t pt-4 sm:flex-row sm:items-center sm:justify-between" style={{ borderColor: "var(--border-subtle)" }}>
                                         <span className="text-xs" style={{ color: "var(--text-muted)" }}>
                                             From{" "}
                                             <span className="font-semibold" style={{ color: "var(--accent)" }}>

@@ -93,7 +93,7 @@ export function TourCard({ tour, index = 0, tourId }: TourCardProps) {
                     <p className="text-[10px] font-medium uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.6)" }}>
                         Starting at
                     </p>
-                    <p className="text-xl font-700 leading-none text-white" style={{ textShadow: "0 0 12px rgba(0,0,0,0.5)" }}>
+                    <p className="text-lg font-700 leading-none text-white sm:text-xl" style={{ textShadow: "0 0 12px rgba(0,0,0,0.5)" }}>
                         {formatUsd(tour.priceUsd)}
                     </p>
                 </div>
@@ -108,7 +108,7 @@ export function TourCard({ tour, index = 0, tourId }: TourCardProps) {
             </div>
 
             {/* Content */}
-            <div className="space-y-3 p-5">
+            <div className="space-y-3 p-4 sm:p-5">
                 {/* Tags */}
                 {tour.tags && tour.tags.length > 0 && (
                     <div className="flex flex-wrap gap-1.5">
@@ -118,7 +118,7 @@ export function TourCard({ tour, index = 0, tourId }: TourCardProps) {
                     </div>
                 )}
                 <div>
-                    <h3 className="text-base font-semibold leading-snug" style={{ color: "var(--text-primary)" }}>
+                    <h3 className="text-[15px] font-semibold leading-snug sm:text-base" style={{ color: "var(--text-primary)" }}>
                         {tour.title}
                     </h3>
                     <p className="mt-1 text-sm leading-relaxed line-clamp-2" style={{ color: "var(--text-secondary)" }}>
@@ -127,20 +127,20 @@ export function TourCard({ tour, index = 0, tourId }: TourCardProps) {
                 </div>
 
                 <div
-                    className="flex items-center gap-3 text-xs"
+                    className="flex flex-wrap items-center gap-2 text-xs sm:flex-nowrap sm:gap-3"
                     style={{ color: "var(--text-muted)" }}
                 >
                     <span className="flex items-center gap-1">
                         <Clock className="h-3.5 w-3.5" />
                         {tour.durationHours}h experience
                     </span>
-                    <span className="h-3.5 w-px" style={{ background: "var(--border)" }} />
+                    <span className="hidden h-3.5 w-px sm:block" style={{ background: "var(--border)" }} />
                     <span>
                         {tour.totalReviews} reviews
                     </span>
                 </div>
 
-                <div className="flex items-center justify-between pt-1">
+                <div className="flex flex-col gap-2 pt-1 sm:flex-row sm:items-center sm:justify-between">
                     {guide && (
                         <p className="text-xs" style={{ color: "var(--text-muted)" }}>
                             By <span style={{ color: "var(--text-secondary)" }}>{guide.name}</span>
@@ -149,7 +149,7 @@ export function TourCard({ tour, index = 0, tourId }: TourCardProps) {
                     <Link
                         href={`/tours/${tour.slug}`}
                         id={`tour-card-cta-${tour.slug}`}
-                        className="ml-auto glow-btn flex items-center gap-1.5 rounded-full px-4 py-2 text-xs"
+                        className="glow-btn flex w-full items-center justify-center gap-1.5 rounded-full px-4 py-2 text-xs sm:w-auto"
                     >
                         View Tour
                         <ArrowRight className="h-3.5 w-3.5" />

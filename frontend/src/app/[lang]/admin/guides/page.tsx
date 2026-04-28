@@ -50,27 +50,26 @@ export default function AdminGuidesPage() {
                         </span>
                     </h1>
                 </div>
-                <div className="flex gap-3 items-center">
+                <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center">
                     <input
                         type="text"
                         placeholder="Filter by city…"
                         value={cityFilter}
                         onChange={e => setCityFilter(e.target.value)}
                         onKeyDown={e => e.key === "Enter" && load(0)}
-                        className="dark-input rounded-xl px-3.5 py-2 text-sm"
-                        style={{ width: 160 }}
+                        className="dark-input w-full rounded-xl px-3.5 py-2 text-sm sm:w-[160px]"
                     />
                     <button
                         id="admin-guides-search"
                         onClick={() => load(0)}
-                        className="glow-btn rounded-xl px-4 py-2 text-xs"
+                        className="glow-btn w-full rounded-xl px-4 py-2 text-xs sm:w-auto touch-target"
                     >
                         Search
                     </button>
                     <button
                         id="admin-guides-refresh"
                         onClick={() => load(page)}
-                        className="ghost-btn flex items-center gap-2 rounded-xl px-4 py-2 text-xs"
+                        className="ghost-btn flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2 text-xs sm:w-auto touch-target"
                     >
                         <RefreshCw className="h-3.5 w-3.5" />
                     </button>
@@ -158,16 +157,16 @@ export default function AdminGuidesPage() {
                                     </span>
 
                                     {/* Actions */}
-                                    <div className="flex gap-2">
+                                    <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
                                         <Link
                                             href={`/guides/${g.slug}`}
-                                            className="ghost-btn rounded-lg px-3 py-1.5 text-xs"
+                                            className="ghost-btn w-full rounded-lg px-3 py-1.5 text-center text-xs sm:w-auto touch-target"
                                         >
                                             Profile
                                         </Link>
                                         <Link
                                             href={`/guides/${g.slug}`}
-                                            className="flex items-center gap-1 rounded-lg px-3 py-1.5 text-xs"
+                                            className="flex w-full items-center justify-center gap-1 rounded-lg px-3 py-1.5 text-xs sm:w-auto touch-target"
                                             style={{ color: "var(--text-muted)" }}
                                         >
                                             <Globe className="h-3 w-3" />

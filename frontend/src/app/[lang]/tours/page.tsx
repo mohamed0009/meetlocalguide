@@ -58,7 +58,7 @@ export default async function ToursPage({ searchParams }: ToursPageProps) {
                         filter: "blur(20px)",
                     }}
                 />
-                <div className="shell relative z-10 py-14">
+                <div className="shell relative z-10 py-10 sm:py-14">
                     <span className="kicker">Tour Listing</span>
                     <h1
                         className="brand-font mt-3 text-3xl font-700 leading-tight sm:text-4xl lg:text-5xl"
@@ -79,7 +79,7 @@ export default async function ToursPage({ searchParams }: ToursPageProps) {
                 {/* Filter form */}
                 <form
                     id="tours-filter-form"
-                    className="rounded-2xl p-5 sm:p-6"
+                    className="rounded-2xl p-4 sm:p-6"
                     style={{
                         background: "var(--bg-card)",
                         border: "1px solid var(--border)",
@@ -111,7 +111,7 @@ export default async function ToursPage({ searchParams }: ToursPageProps) {
                                 id="tours-search-input"
                                 defaultValue={query}
                                 placeholder="Desert, medina, mountain..."
-                                className="dark-input w-full rounded-xl px-3.5 py-2.5 text-sm"
+                                className="dark-input h-11 w-full rounded-xl px-3.5 py-2.5 text-sm"
                             />
                         </label>
 
@@ -124,7 +124,7 @@ export default async function ToursPage({ searchParams }: ToursPageProps) {
                                 name="city"
                                 id="tours-city-select"
                                 defaultValue={city ?? ""}
-                                className="dark-input w-full rounded-xl px-3.5 py-2.5 text-sm"
+                                className="dark-input h-11 w-full rounded-xl px-3.5 py-2.5 text-sm"
                             >
                                 <option value="">All cities</option>
                                 {cities.map((c) => (
@@ -146,7 +146,7 @@ export default async function ToursPage({ searchParams }: ToursPageProps) {
                                 step={5}
                                 defaultValue={maxPriceUsd}
                                 placeholder="120"
-                                className="dark-input w-full rounded-xl px-3.5 py-2.5 text-sm"
+                                className="dark-input h-11 w-full rounded-xl px-3.5 py-2.5 text-sm"
                             />
                         </label>
 
@@ -162,16 +162,16 @@ export default async function ToursPage({ searchParams }: ToursPageProps) {
                                 min={1}
                                 defaultValue={minDurationHours}
                                 placeholder="4"
-                                className="dark-input w-full rounded-xl px-3.5 py-2.5 text-sm"
+                                className="dark-input h-11 w-full rounded-xl px-3.5 py-2.5 text-sm"
                             />
                         </label>
                     </div>
 
-                    <div className="mt-5 flex flex-wrap gap-3">
+                    <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
                         <button
                             type="submit"
                             id="tours-apply-filter-btn"
-                            className="glow-btn flex items-center gap-2 rounded-xl px-6 py-2.5 text-sm"
+                            className="glow-btn flex w-full items-center justify-center gap-2 rounded-xl px-6 py-2.5 text-sm sm:w-auto touch-target"
                         >
                             Apply Filters
                             <ArrowRight className="h-4 w-4" />
@@ -179,7 +179,7 @@ export default async function ToursPage({ searchParams }: ToursPageProps) {
                         <Link
                             href="/tours"
                             id="tours-clear-filters-btn"
-                            className="ghost-btn rounded-xl px-6 py-2.5 text-sm"
+                            className="ghost-btn w-full rounded-xl px-6 py-2.5 text-center text-sm sm:w-auto touch-target"
                         >
                             Clear Filters
                         </Link>

@@ -56,13 +56,13 @@ export function PremiumHomeClient({ tours, guides }: PremiumHomeClientProps) {
   return (
     <div className="page-wrapper">
       <section className="hero-bg border-b border-[var(--border)]">
-        <div className="shell grid gap-10 py-24 lg:grid-cols-2 lg:items-center">
+        <div className="shell grid gap-8 py-16 sm:gap-10 sm:py-24 lg:grid-cols-2 lg:items-center">
           <FadeInUp>
             <span className="kicker">
               <Compass className="h-3 w-3" />
               Morocco Travel Marketplace
             </span>
-            <h1 className="brand-font mt-5 text-4xl font-extrabold leading-tight sm:text-5xl">
+            <h1 className="brand-font mt-5 text-3xl font-extrabold leading-tight sm:text-5xl">
               Book trusted local guides for unforgettable Morocco experiences.
             </h1>
             <p className="mt-5 max-w-xl text-base text-[var(--text-secondary)] sm:text-lg">
@@ -70,10 +70,16 @@ export function PremiumHomeClient({ tours, guides }: PremiumHomeClientProps) {
               experts in every major destination.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href={localize("/tours")} className="glow-btn rounded-xl px-6 py-3 text-sm">
+              <Link
+                href={localize("/tours")}
+                className="glow-btn w-full rounded-xl px-6 py-3 text-center text-sm sm:w-auto"
+              >
                 Explore Tours
               </Link>
-              <Link href={localize("/become-a-guide")} className="ghost-btn rounded-xl px-6 py-3 text-sm">
+              <Link
+                href={localize("/become-a-guide")}
+                className="ghost-btn w-full rounded-xl px-6 py-3 text-center text-sm sm:w-auto"
+              >
                 Become a Guide
               </Link>
             </div>
@@ -99,7 +105,7 @@ export function PremiumHomeClient({ tours, guides }: PremiumHomeClientProps) {
         </div>
       </section>
 
-      <section className="shell py-16">
+      <section className="shell py-12 sm:py-16">
         <FadeInUp className="mb-8">
           <h2 className="brand-font text-3xl font-bold sm:text-4xl">Featured Experiences</h2>
         </FadeInUp>
@@ -112,9 +118,9 @@ export function PremiumHomeClient({ tours, guides }: PremiumHomeClientProps) {
         </StaggerGroup>
       </section>
 
-      <section className="border-y border-[var(--border)] bg-[var(--bg-elevated)] py-16">
+      <section className="border-y border-[var(--border)] bg-[var(--bg-elevated)] py-12 sm:py-16">
         <div className="shell">
-          <FadeInUp className="mb-8 flex items-end justify-between gap-4">
+          <FadeInUp className="mb-8 flex flex-col items-start gap-3 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
             <div>
               <span className="kicker">Top Destinations in Morocco</span>
               <h2 className="brand-font mt-4 text-3xl font-bold sm:text-4xl">Discover your next destination</h2>
@@ -126,7 +132,10 @@ export function PremiumHomeClient({ tours, guides }: PremiumHomeClientProps) {
           <StaggerGroup className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {topCities.map((city) => (
               <StaggerItem key={city}>
-                <Link href={localize(`/tours?city=${encodeURIComponent(city)}`)} className="glass-card group flex items-center justify-between rounded-2xl p-5">
+                <Link
+                  href={localize(`/tours?city=${encodeURIComponent(city)}`)}
+                  className="glass-card group flex items-center justify-between rounded-2xl p-4 sm:p-5"
+                >
                   <span className="flex items-center gap-2 text-sm font-semibold">
                     <MapPin className="h-4 w-4 text-[var(--accent)]" />
                     {city}
@@ -139,7 +148,7 @@ export function PremiumHomeClient({ tours, guides }: PremiumHomeClientProps) {
         </div>
       </section>
 
-      <section className="border-y border-[var(--border)] bg-[var(--bg-elevated)] py-16">
+      <section className="border-y border-[var(--border)] bg-[var(--bg-elevated)] py-12 sm:py-16">
         <div className="shell">
           <FadeInUp className="mb-8">
             <h2 className="brand-font text-3xl font-bold sm:text-4xl">Featured Local Guides</h2>
@@ -171,7 +180,7 @@ export function PremiumHomeClient({ tours, guides }: PremiumHomeClientProps) {
         </div>
       </section>
 
-      <section className="shell py-16">
+      <section className="shell py-12 sm:py-16">
         <FadeInUp className="mb-8">
           <h2 className="brand-font text-3xl font-bold sm:text-4xl">What travelers say</h2>
         </FadeInUp>
@@ -190,7 +199,7 @@ export function PremiumHomeClient({ tours, guides }: PremiumHomeClientProps) {
         </StaggerGroup>
       </section>
 
-      <section className="border-y border-[var(--border)] bg-[var(--bg-elevated)] py-16">
+      <section className="border-y border-[var(--border)] bg-[var(--bg-elevated)] py-12 sm:py-16">
         <div className="shell max-w-4xl">
           <FadeInUp className="mb-8">
             <h2 className="brand-font text-3xl font-bold sm:text-4xl">Frequently asked questions</h2>
@@ -210,9 +219,9 @@ export function PremiumHomeClient({ tours, guides }: PremiumHomeClientProps) {
         </div>
       </section>
 
-      <section className="shell py-16">
-        <FadeInUp className="glass-card rounded-3xl p-8 text-center">
-          <h2 className="brand-font text-3xl font-bold">Why travelers choose MeetLocalGuide</h2>
+      <section className="shell py-12 sm:py-16">
+        <FadeInUp className="glass-card rounded-3xl p-6 text-center sm:p-8">
+          <h2 className="brand-font text-2xl font-bold sm:text-3xl">Why travelers choose MeetLocalGuide</h2>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             {FEATURES.map((item) => (
               <span key={item} className="tag text-xs">
@@ -221,10 +230,16 @@ export function PremiumHomeClient({ tours, guides }: PremiumHomeClientProps) {
             ))}
           </div>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link href={localize("/destinations")} className="glow-btn rounded-xl px-6 py-3 text-sm">
+            <Link
+              href={localize("/destinations")}
+              className="glow-btn w-full rounded-xl px-6 py-3 text-center text-sm sm:w-auto"
+            >
               View Destinations <ArrowRight className="ml-1 inline h-4 w-4" />
             </Link>
-            <Link href={localize("/contact")} className="ghost-btn rounded-xl px-6 py-3 text-sm">
+            <Link
+              href={localize("/contact")}
+              className="ghost-btn w-full rounded-xl px-6 py-3 text-center text-sm sm:w-auto"
+            >
               Talk to our team
             </Link>
           </div>

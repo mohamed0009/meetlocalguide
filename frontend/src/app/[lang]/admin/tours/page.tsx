@@ -43,7 +43,7 @@ export default function AdminToursPage() {
 
     return (
         <div className="p-6 sm:p-8 space-y-6">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                     <span className="kicker">Admin</span>
                     <h1 className="brand-font mt-1 text-2xl font-700" style={{ color: "var(--text-primary)" }}>
@@ -56,7 +56,7 @@ export default function AdminToursPage() {
                 <button
                     id="admin-tours-refresh"
                     onClick={() => load(page)}
-                    className="ghost-btn flex items-center gap-2 rounded-xl px-4 py-2 text-xs"
+                    className="ghost-btn flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2 text-xs sm:w-auto touch-target"
                 >
                     <RefreshCw className="h-3.5 w-3.5" />
                     Refresh
@@ -133,17 +133,17 @@ export default function AdminToursPage() {
                                     </div>
 
                                     {/* Actions */}
-                                    <div className="flex gap-2">
+                                    <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
                                         <Link
                                             href={`/tours/${t.slug}`}
-                                            className="ghost-btn rounded-lg px-3 py-1.5 text-xs"
+                                            className="ghost-btn w-full rounded-lg px-3 py-1.5 text-center text-xs sm:w-auto touch-target"
                                         >
                                             View
                                         </Link>
                                         <button
                                             disabled={archiving === t.id}
                                             onClick={() => archiveTour(t.id)}
-                                            className="flex items-center gap-1 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors"
+                                            className="flex w-full items-center justify-center gap-1 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors sm:w-auto touch-target"
                                             style={{ background: "var(--bg-surface)", border: "1px solid var(--border)", color: "var(--text-muted)" }}
                                         >
                                             <Archive className="h-3 w-3" />

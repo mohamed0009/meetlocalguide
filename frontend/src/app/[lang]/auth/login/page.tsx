@@ -67,7 +67,7 @@ export default function LoginPage() {
                         required
                         value={email}
                         onChange={e => setEmail(e.target.value)}
-                        className="dark-input w-full rounded-xl px-3.5 py-2.5 text-sm"
+                        className="dark-input h-11 w-full rounded-xl px-3.5 py-2.5 text-sm"
                     />
                 </label>
 
@@ -80,11 +80,11 @@ export default function LoginPage() {
                         required
                         value={password}
                         onChange={e => setPassword(e.target.value)}
-                        className="dark-input w-full rounded-xl px-3.5 py-2.5 text-sm"
+                        className="dark-input h-11 w-full rounded-xl px-3.5 py-2.5 text-sm"
                     />
                 </label>
 
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                     <label className="flex items-center gap-2 text-xs cursor-pointer" style={{ color: "var(--text-muted)" }}>
                         <input type="checkbox" className="rounded" />
                         Remember me
@@ -98,7 +98,7 @@ export default function LoginPage() {
                     id="login-submit-btn"
                     type="submit"
                     disabled={loading}
-                    className="glow-btn mt-1 w-full rounded-xl py-3 text-sm font-semibold disabled:opacity-60"
+                    className="glow-btn mt-1 w-full rounded-xl py-3 text-sm font-semibold disabled:opacity-60 touch-target"
                 >
                     {loading ? "Logging in…" : "Log In"}
                 </button>
@@ -113,7 +113,7 @@ export default function LoginPage() {
             <button
                 id="login-google-btn"
                 type="button"
-                className="ghost-btn w-full rounded-xl py-2.5 text-sm font-medium flex items-center justify-center gap-2"
+                className="ghost-btn w-full rounded-xl py-2.5 text-sm font-medium flex items-center justify-center gap-2 touch-target"
             >
                 <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M19.2 10.23c0-.7-.06-1.38-.17-2.03H10v3.84h5.19a4.44 4.44 0 0 1-1.93 2.9v2.41h3.12c1.83-1.68 2.88-4.16 2.88-7.12Z" fill="#4285F4" />

@@ -55,7 +55,7 @@ export function SiteHeader() {
                             aria-hidden="true"
                         />
                         <span
-                            className="brand-font text-[22px] font-500 tracking-tight mt-0.5"
+                            className="brand-font text-[18px] sm:text-[22px] font-500 tracking-tight mt-0.5"
                             style={{ color: "var(--text-primary)" }}
                         >
                             Meet<span style={{ color: "var(--accent)" }}>Local</span>Guide
@@ -115,7 +115,7 @@ export function SiteHeader() {
                             id="mobile-menu-toggle"
                             aria-label="Toggle mobile menu"
                             onClick={() => setMobileOpen((v) => !v)}
-                            className="flex h-9 w-9 items-center justify-center rounded-lg transition-colors duration-200"
+                            className="flex h-10 w-10 sm:h-9 sm:w-9 items-center justify-center rounded-lg transition-colors duration-200 touch-target"
                             style={{
                                 background: mobileOpen ? "var(--accent-subtle)" : "transparent",
                                 color: mobileOpen ? "var(--accent)" : "var(--text-secondary)",
@@ -137,7 +137,7 @@ export function SiteHeader() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -8 }}
                         transition={{ duration: 0.18, ease: "easeOut" }}
-                        className="fixed inset-x-0 top-[65px] z-40 md:hidden"
+                        className="fixed inset-x-0 top-[64px] z-40 md:hidden"
                         style={{
                             background: "rgba(255,255,255,0.97)",
                             backdropFilter: "blur(24px)",
@@ -155,7 +155,7 @@ export function SiteHeader() {
                                     <Link
                                         href={localize(item.href)}
                                         onClick={() => setMobileOpen(false)}
-                                        className="block py-3 text-sm font-semibold uppercase tracking-[0.1em] transition-colors duration-200"
+                                        className="block py-3 text-sm font-semibold uppercase tracking-[0.1em] transition-colors duration-200 touch-target"
                                         style={{ color: "var(--text-secondary)", borderBottom: "1px solid var(--border-subtle)" }}
                                         onMouseEnter={e => {
                                             (e.currentTarget as HTMLElement).style.color = "var(--text-primary)";

@@ -102,8 +102,8 @@ export default function DashboardPage() {
                 className="border-b"
                 style={{ background: "var(--bg-elevated)", borderColor: "var(--border)" }}
             >
-                <div className="shell py-10">
-                    <div className="flex items-start justify-between gap-4">
+                <div className="shell py-8 sm:py-10">
+                    <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                         <div>
                             <span className="kicker">Traveler Dashboard</span>
                             <h1 className="brand-font mt-2 text-3xl font-700" style={{ color: "var(--text-primary)" }}>
@@ -119,7 +119,7 @@ export default function DashboardPage() {
                         <button
                             id="dashboard-logout-btn"
                             onClick={handleLogout}
-                            className="ghost-btn flex items-center gap-2 rounded-xl px-4 py-2 text-xs"
+                            className="ghost-btn flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2 text-xs sm:w-auto touch-target"
                         >
                             <LogOut className="h-3.5 w-3.5" />
                             Log out
@@ -153,7 +153,7 @@ export default function DashboardPage() {
             <div className="shell py-8 space-y-6">
                 {/* Tabs */}
                 <div
-                    className="flex gap-1 rounded-xl p-1 w-fit"
+                    className="flex w-full gap-1 rounded-xl p-1 sm:w-fit overflow-x-auto"
                     style={{ background: "var(--bg-surface)", border: "1px solid var(--border)" }}
                 >
                     {([
@@ -185,11 +185,11 @@ export default function DashboardPage() {
                 {/* Bookings tab */}
                 {tab === "bookings" && (
                     <div className="space-y-4">
-                        <div className="flex items-center justify-between">
+                        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                             <h2 className="text-xl font-semibold" style={{ color: "var(--text-primary)" }}>
                                 My Bookings
                             </h2>
-                            <Link href="/tours" className="glow-btn flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs">
+                            <Link href="/tours" className="glow-btn flex w-full items-center justify-center gap-1.5 rounded-xl px-4 py-2 text-xs sm:w-auto touch-target">
                                 Browse Tours
                                 <ArrowRight className="h-3.5 w-3.5" />
                             </Link>
@@ -275,10 +275,10 @@ export default function DashboardPage() {
                                             </span>
                                         </div>
 
-                                        <div className="mt-4 flex gap-3">
+                                        <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center">
                                             <Link
                                                 href={`/booking/${b.id}`}
-                                                className="ghost-btn rounded-lg px-4 py-1.5 text-xs"
+                                                className="ghost-btn w-full rounded-lg px-4 py-2 text-center text-xs sm:w-auto touch-target"
                                             >
                                                 View Details
                                             </Link>
@@ -302,11 +302,11 @@ export default function DashboardPage() {
                 {/* Saved tab */}
                 {tab === "saved" && (
                     <div className="space-y-4">
-                        <div className="flex items-center justify-between">
+                        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                             <h2 className="text-xl font-semibold" style={{ color: "var(--text-primary)" }}>
                                 Saved Tours
                             </h2>
-                            <Link href="/tours" className="glow-btn flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs">
+                            <Link href="/tours" className="glow-btn flex w-full items-center justify-center gap-1.5 rounded-xl px-4 py-2 text-xs sm:w-auto touch-target">
                                 Browse Tours
                                 <ArrowRight className="h-3.5 w-3.5" />
                             </Link>
@@ -375,7 +375,7 @@ export default function DashboardPage() {
                                                     id={`fav-remove-${f.favoriteId}`}
                                                     onClick={() => removeFavorite(f.tourId, f.favoriteId)}
                                                     aria-label="Remove from saved"
-                                                    className="flex-shrink-0 flex items-center justify-center h-8 w-8 rounded-full transition-colors duration-200"
+                                                    className="flex-shrink-0 flex items-center justify-center h-9 w-9 rounded-full transition-colors duration-200 sm:h-8 sm:w-8 touch-target"
                                                     style={{
                                                         background: "var(--accent-dim)",
                                                         color: "var(--accent)",
@@ -409,17 +409,17 @@ export default function DashboardPage() {
                                                 </span>
                                             </div>
 
-                                            <div className="flex gap-2 pt-1">
+                                            <div className="flex flex-col gap-2 pt-1 sm:flex-row sm:items-center">
                                                 <Link
                                                     href={`/tours/${f.tourSlug}`}
-                                                    className="glow-btn flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs flex-1 justify-center"
+                                                    className="glow-btn flex w-full items-center justify-center gap-1.5 rounded-xl px-4 py-2 text-xs sm:flex-1"
                                                 >
                                                     View Tour
                                                     <ArrowRight className="h-3.5 w-3.5" />
                                                 </Link>
                                                 <Link
                                                     href={`/tours/${f.tourSlug}/book`}
-                                                    className="ghost-btn rounded-xl px-4 py-2 text-xs"
+                                                    className="ghost-btn w-full rounded-xl px-4 py-2 text-center text-xs sm:w-auto"
                                                 >
                                                     Book
                                                 </Link>

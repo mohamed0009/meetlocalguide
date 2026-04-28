@@ -109,6 +109,45 @@ body::before {
 }
 
 /* ─────────────────────────────────────────────────────────
+   RESPONSIVE HELPERS / TOUCH TARGETS
+   Small, focused helpers to improve mobile layout and hit areas
+───────────────────────────────────────────────────────── */
+
+:root {
+  --bp-sm: 640px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+}
+
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 8px;
+}
+
+@media (max-width: 640px) {
+  .brand-font {
+    font-size: 18px;
+  }
+
+  .shell {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .page-wrapper {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* slightly larger tappable controls on very small screens */
+  button,
+  a[role="button"] {
+    min-height: 40px;
+    min-width: 40px;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────
    TYPOGRAPHY
 ───────────────────────────────────────────────────────── */
 

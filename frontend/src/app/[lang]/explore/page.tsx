@@ -42,7 +42,7 @@ export default function ExplorePage() {
                     }}
                 />
 
-                <div className="shell relative z-10 py-14">
+                <div className="shell relative z-10 py-10 sm:py-14">
                     <div className="flex items-center gap-2 mb-4">
                         <span className="kicker">
                             <Compass className="h-3 w-3" />

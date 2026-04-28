@@ -11,10 +11,10 @@ export default function ExperiencesPage() {
   const tours = getAllTours();
 
   return (
-    <section className="shell py-14">
+    <section className="shell py-10 sm:py-14">
       <header className="mb-10">
         <span className="kicker">Experiences</span>
-        <h1 className="brand-font mt-3 text-4xl font-extrabold">Handpicked Experiences</h1>
+        <h1 className="brand-font mt-3 text-3xl font-extrabold sm:text-4xl">Handpicked Experiences</h1>
         <p className="mt-3 max-w-2xl text-sm text-[var(--text-secondary)]">
           Discover premium local experiences: desert escapes, culture routes, mountain treks, and photography adventures.
         </p>

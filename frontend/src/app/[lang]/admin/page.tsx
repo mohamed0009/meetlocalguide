@@ -63,7 +63,7 @@ export default function AdminOverviewPage() {
                 ].map(({ label, value, Icon, accent }) => (
                     <div
                         key={label}
-                        className="rounded-2xl p-5"
+                        className="rounded-2xl p-4 sm:p-5"
                         style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
                     >
                         <div className="flex items-center justify-between mb-3">
@@ -89,7 +89,7 @@ export default function AdminOverviewPage() {
                 className="rounded-2xl overflow-hidden"
                 style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
             >
-                <div className="flex items-center justify-between px-6 py-4 border-b" style={{ borderColor: "var(--border)" }}>
+                <div className="flex flex-col gap-2 px-6 py-4 border-b sm:flex-row sm:items-center sm:justify-between" style={{ borderColor: "var(--border)" }}>
                     <h2 className="font-semibold" style={{ color: "var(--text-primary)" }}>Recent Bookings</h2>
                     <Link
                         href="/admin/bookings"
@@ -107,7 +107,7 @@ export default function AdminOverviewPage() {
                 ) : (
                     <div className="divide-y" style={{ borderColor: "var(--border)" }}>
                         {recentBookings.map(b => (
-                            <div key={b.id} className="flex items-center justify-between px-6 py-4 gap-4">
+                            <div key={b.id} className="flex flex-col gap-2 px-6 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
                                 <div className="min-w-0">
                                     <p className="text-sm font-medium truncate" style={{ color: "var(--text-primary)" }}>
                                         {b.tourTitle}
@@ -141,7 +141,7 @@ export default function AdminOverviewPage() {
                     <Link
                         key={href}
                         href={href}
-                        className="group rounded-2xl p-5 transition-all duration-200"
+                        className="group rounded-2xl p-4 sm:p-5 transition-all duration-200"
                         style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
                         onMouseEnter={e => {
                             (e.currentTarget as HTMLElement).style.borderColor = "var(--border-accent)";

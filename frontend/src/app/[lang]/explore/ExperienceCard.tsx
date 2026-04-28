@@ -48,13 +48,13 @@ export default function ExperienceCard({
                 border: active
                     ? "1px solid var(--accent)"
                     : hovered
-                    ? "1px solid var(--border-accent)"
-                    : "1px solid var(--border)",
+                        ? "1px solid var(--border-accent)"
+                        : "1px solid var(--border)",
                 boxShadow: active
                     ? "var(--shadow-glow)"
                     : hovered
-                    ? "0 4px 24px rgba(0,0,0,0.5)"
-                    : "var(--shadow-card)",
+                        ? "0 4px 24px rgba(0,0,0,0.5)"
+                        : "var(--shadow-card)",
             }}
             onMouseEnter={() => { setHovered(true); onHover(experience.id); }}
             onMouseLeave={() => { setHovered(false); onHover(null); }}
@@ -126,7 +126,7 @@ export default function ExperienceCard({
                             type="button"
                             aria-label="Previous image"
                             onClick={previousImage}
-                            className="absolute left-2 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full transition-all duration-200"
+                            className="absolute left-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full transition-all duration-200 sm:h-7 sm:w-7 touch-target"
                             style={{
                                 background: "rgba(8,8,14,0.75)",
                                 backdropFilter: "blur(8px)",
@@ -140,7 +140,7 @@ export default function ExperienceCard({
                             type="button"
                             aria-label="Next image"
                             onClick={nextImage}
-                            className="absolute right-2 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full transition-all duration-200"
+                            className="absolute right-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full transition-all duration-200 sm:h-7 sm:w-7 touch-target"
                             style={{
                                 background: "rgba(8,8,14,0.75)",
                                 backdropFilter: "blur(8px)",
@@ -179,10 +179,13 @@ export default function ExperienceCard({
             </div>
 
             {/* Content */}
-            <div className={cn("space-y-3 p-4", !compact && "p-5")}>
+            <div className={cn("space-y-3 p-4", !compact && "p-4 sm:p-5")}>
                 <div>
                     <h3
-                        className={cn("font-semibold leading-tight", compact ? "text-sm" : "text-base")}
+                        className={cn(
+                            "font-semibold leading-tight",
+                            compact ? "text-sm" : "text-[15px] sm:text-base"
+                        )}
                         style={{ color: "var(--text-primary)" }}
                     >
                         {experience.title}
@@ -209,7 +212,7 @@ export default function ExperienceCard({
                 </div>
 
                 {/* Price + CTA */}
-                <div className="flex items-center justify-between gap-3 pt-1">
+                <div className="flex flex-col gap-2 pt-1 sm:flex-row sm:items-center sm:justify-between">
                     <div>
                         <p className="text-[10px] uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>
                             Price / person
@@ -229,7 +232,7 @@ export default function ExperienceCard({
                         id={`exp-card-cta-${experience.id}`}
                         onClick={(e) => e.stopPropagation()}
                         className={cn(
-                            "glow-btn flex items-center gap-1.5 rounded-full text-xs font-semibold",
+                            "glow-btn flex w-full items-center justify-center gap-1.5 rounded-full text-xs font-semibold sm:w-auto touch-target",
                             compact ? "px-3 py-2" : "px-4 py-2.5"
                         )}
                     >
