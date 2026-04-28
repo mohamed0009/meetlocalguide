@@ -1,6 +1,7 @@
 package com.meetlocalguide.platform.modules.guide.application;
 
 import com.meetlocalguide.platform.common.exception.AppException;
+import com.meetlocalguide.platform.common.security.InputSanitizer;
 import com.meetlocalguide.platform.modules.auth.domain.Role;
 import com.meetlocalguide.platform.modules.auth.domain.RoleName;
 import com.meetlocalguide.platform.modules.auth.infrastructure.RoleRepository;
@@ -17,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,8 +29,10 @@ public class GuideProfileService {
     private final GuideProfileRepository guideProfileRepository;
     private final UserAccountRepository userAccountRepository;
     private final RoleRepository roleRepository;
+    private final InputSanitizer inputSanitizer;
 
     @Transactional(readOnly = true)
+    @Cacheable(value = "guides-search", key = "T(java.util.Objects).hash(#city, #status, #pageable.pageNumber, #pageable.pageSize, #pageable.sort.toString())")
     public Page<GuideSummaryResponse> listGuides(String city, GuideVerificationStatus status, Pageable pageable) {
         return guideProfileRepository.search(city, status, pageable)
                 .map(this::toSummaryResponse);
@@ -72,11 +76,12 @@ public class GuideProfileService {
                 });
 
         guideProfile.setSlug(request.slug().trim().toLowerCase());
-        guideProfile.setBio(request.bio().trim());
+        guideProfile.setBio(inputSanitizer.clean(request.bio()));
         guideProfile.setYearsExperience(request.yearsExperience());
-        guideProfile.setCity(request.city().trim());
-        guideProfile.setCountry(request.country().trim());
+        guideProfile.setCity(inputSanitizer.clean(request.city()));
+        guideProfile.setCountry(inputSanitizer.clean(request.country()));
         guideProfile.setHourlyRateAmount(request.hourlyRateAmount());
+        guideProfile.setAvailability(inputSanitizer.clean(request.availability()));
         guideProfile.setLanguages(request.languages());
 
         ensureGuideRole(userAccount);
@@ -108,6 +113,7 @@ public class GuideProfileService {
                 guideProfile.getCity(),
                 guideProfile.getCountry(),
                 guideProfile.getVerificationStatus().name(),
+                guideProfile.getAvailability(),
                 guideProfile.getAverageRating(),
                 guideProfile.getTotalReviews(),
                 Set.copyOf(guideProfile.getLanguages()));
@@ -127,6 +133,7 @@ public class GuideProfileService {
                 guideProfile.getCountry(),
                 guideProfile.getVerificationStatus().name(),
                 guideProfile.getHourlyRateAmount(),
+                guideProfile.getAvailability(),
                 guideProfile.getAverageRating(),
                 guideProfile.getTotalReviews(),
                 Set.copyOf(guideProfile.getLanguages()));

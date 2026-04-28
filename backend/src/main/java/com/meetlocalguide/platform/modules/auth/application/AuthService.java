@@ -5,30 +5,32 @@ import com.meetlocalguide.platform.common.domain.SupportedLocale;
 import com.meetlocalguide.platform.common.exception.AppException;
 import com.meetlocalguide.platform.config.security.JwtTokenProvider;
 import com.meetlocalguide.platform.modules.auth.api.dto.AuthResponse;
+import com.meetlocalguide.platform.modules.auth.api.dto.ForgotPasswordRequest;
 import com.meetlocalguide.platform.modules.auth.api.dto.AuthUserView;
 import com.meetlocalguide.platform.modules.auth.api.dto.LoginRequest;
 import com.meetlocalguide.platform.modules.auth.api.dto.LogoutRequest;
 import com.meetlocalguide.platform.modules.auth.api.dto.RefreshTokenRequest;
 import com.meetlocalguide.platform.modules.auth.api.dto.RegisterRequest;
+import com.meetlocalguide.platform.modules.auth.api.dto.ResetPasswordRequest;
+import com.meetlocalguide.platform.modules.auth.api.dto.VerifyEmailRequest;
+import com.meetlocalguide.platform.modules.auth.domain.EmailVerificationToken;
+import com.meetlocalguide.platform.modules.auth.domain.PasswordResetToken;
 import com.meetlocalguide.platform.modules.auth.domain.RefreshToken;
 import com.meetlocalguide.platform.modules.auth.domain.Role;
 import com.meetlocalguide.platform.modules.auth.domain.RoleName;
+import com.meetlocalguide.platform.modules.auth.infrastructure.EmailVerificationTokenRepository;
+import com.meetlocalguide.platform.modules.auth.infrastructure.PasswordResetTokenRepository;
 import com.meetlocalguide.platform.modules.auth.infrastructure.RefreshTokenRepository;
 import com.meetlocalguide.platform.modules.auth.infrastructure.RoleRepository;
+import com.meetlocalguide.platform.modules.notification.application.NotificationService;
 import com.meetlocalguide.platform.modules.user.domain.AccountStatus;
 import com.meetlocalguide.platform.modules.user.domain.AuthProvider;
 import com.meetlocalguide.platform.modules.user.domain.UserAccount;
 import com.meetlocalguide.platform.modules.user.domain.UserProfile;
 import com.meetlocalguide.platform.modules.user.infrastructure.UserAccountRepository;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.util.Base64;
 import java.util.Comparator;
-import java.util.HexFormat;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -43,10 +45,12 @@ public class AuthService {
     private final UserAccountRepository userAccountRepository;
     private final RoleRepository roleRepository;
     private final RefreshTokenRepository refreshTokenRepository;
+    private final EmailVerificationTokenRepository emailVerificationTokenRepository;
+    private final PasswordResetTokenRepository passwordResetTokenRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
-
-    private final SecureRandom secureRandom = new SecureRandom();
+    private final TokenCryptoService tokenCryptoService;
+    private final NotificationService notificationService;
 
     @Transactional
     public AuthResponse register(RegisterRequest request, ClientMetadata clientMetadata) {
@@ -65,7 +69,7 @@ public class AuthService {
         userAccount.setEmail(normalizedEmail);
         userAccount.setPasswordHash(passwordEncoder.encode(request.password()));
         userAccount.setAuthProvider(AuthProvider.LOCAL);
-        userAccount.setAccountStatus(AccountStatus.ACTIVE);
+        userAccount.setAccountStatus(AccountStatus.PENDING_VERIFICATION);
         userAccount.setEmailVerified(false);
         userAccount.getRoles().add(roleUser);
 
@@ -77,7 +81,8 @@ public class AuthService {
         userAccount.setUserProfile(userProfile);
 
         UserAccount persisted = userAccountRepository.save(userAccount);
-        return issueTokens(persisted, clientMetadata);
+        issueEmailVerificationToken(persisted);
+        return new AuthResponse("Bearer", "", 0, "", toAuthUserView(persisted));
     }
 
     @Transactional
@@ -91,6 +96,10 @@ public class AuthService {
             throw new AppException(HttpStatus.UNAUTHORIZED, "INVALID_CREDENTIALS", "Invalid email or password.");
         }
 
+        if (!userAccount.isEmailVerified() || userAccount.getAccountStatus() == AccountStatus.PENDING_VERIFICATION) {
+            throw new AppException(HttpStatus.FORBIDDEN, "EMAIL_NOT_VERIFIED", "Please verify your email before login.");
+        }
+
         if (userAccount.getAccountStatus() != AccountStatus.ACTIVE) {
             throw new AppException(HttpStatus.FORBIDDEN, "ACCOUNT_NOT_ACTIVE", "Account is not active.");
         }
@@ -102,7 +111,8 @@ public class AuthService {
     @Transactional
     public AuthResponse refreshToken(RefreshTokenRequest request, ClientMetadata clientMetadata) {
         String refreshToken = request.refreshToken().trim();
-        RefreshToken persistedToken = refreshTokenRepository.findByTokenHashAndRevokedFalse(hashToken(refreshToken))
+        RefreshToken persistedToken = refreshTokenRepository
+                .findByTokenHashAndRevokedFalse(tokenCryptoService.hashToken(refreshToken))
                 .orElseThrow(() -> new AppException(HttpStatus.UNAUTHORIZED, "INVALID_REFRESH_TOKEN",
                         "Refresh token is invalid."));
 
@@ -126,17 +136,59 @@ public class AuthService {
             return;
         }
 
-        refreshTokenRepository.findByTokenHashAndRevokedFalse(hashToken(request.refreshToken().trim()))
+        refreshTokenRepository.findByTokenHashAndRevokedFalse(tokenCryptoService.hashToken(request.refreshToken().trim()))
                 .ifPresent(this::revokeToken);
+    }
+
+    @Transactional
+    public void verifyEmail(VerifyEmailRequest request) {
+        EmailVerificationToken persistedToken = emailVerificationTokenRepository
+                .findByTokenHashAndConsumedAtIsNull(tokenCryptoService.hashToken(request.token().trim()))
+                .orElseThrow(() -> new AppException(HttpStatus.UNAUTHORIZED, "INVALID_VERIFICATION_TOKEN",
+                        "Email verification token is invalid."));
+
+        if (persistedToken.getExpiresAt().isBefore(Instant.now())) {
+            throw new AppException(HttpStatus.UNAUTHORIZED, "VERIFICATION_TOKEN_EXPIRED",
+                    "Email verification token has expired.");
+        }
+
+        persistedToken.setConsumedAt(Instant.now());
+        UserAccount userAccount = persistedToken.getUserAccount();
+        userAccount.setEmailVerified(true);
+        userAccount.setAccountStatus(AccountStatus.ACTIVE);
+    }
+
+    @Transactional
+    public void forgotPassword(ForgotPasswordRequest request) {
+        userAccountRepository.findByEmailIgnoreCase(normalizeEmail(request.email()))
+                .ifPresent(this::issuePasswordResetToken);
+    }
+
+    @Transactional
+    public void resetPassword(ResetPasswordRequest request) {
+        PasswordResetToken resetToken = passwordResetTokenRepository
+                .findByTokenHashAndConsumedAtIsNull(tokenCryptoService.hashToken(request.token().trim()))
+                .orElseThrow(() -> new AppException(HttpStatus.UNAUTHORIZED, "INVALID_PASSWORD_RESET_TOKEN",
+                        "Password reset token is invalid."));
+
+        if (resetToken.getExpiresAt().isBefore(Instant.now())) {
+            throw new AppException(HttpStatus.UNAUTHORIZED, "PASSWORD_RESET_TOKEN_EXPIRED",
+                    "Password reset token has expired.");
+        }
+
+        resetToken.setConsumedAt(Instant.now());
+        UserAccount userAccount = resetToken.getUserAccount();
+        userAccount.setPasswordHash(passwordEncoder.encode(request.newPassword()));
+        refreshTokenRepository.deleteByUserAccount(userAccount);
     }
 
     private AuthResponse issueTokens(UserAccount userAccount, ClientMetadata clientMetadata) {
         String accessToken = jwtTokenProvider.generateAccessToken(userAccount);
-        String plainRefreshToken = generateRefreshToken();
+        String plainRefreshToken = tokenCryptoService.generateSecureToken();
 
         RefreshToken refreshTokenEntity = new RefreshToken();
         refreshTokenEntity.setUserAccount(userAccount);
-        refreshTokenEntity.setTokenHash(hashToken(plainRefreshToken));
+        refreshTokenEntity.setTokenHash(tokenCryptoService.hashToken(plainRefreshToken));
         refreshTokenEntity.setExpiresAt(Instant.now().plus(jwtTokenProvider.getRefreshTokenTtlDays(), ChronoUnit.DAYS));
         refreshTokenEntity.setIpAddress(clientMetadata.ipAddress());
         refreshTokenEntity.setUserAgent(clientMetadata.userAgent());
@@ -169,20 +221,28 @@ public class AuthService {
         refreshToken.setRevokedAt(Instant.now());
     }
 
-    private String generateRefreshToken() {
-        byte[] bytes = new byte[64];
-        secureRandom.nextBytes(bytes);
-        return Base64.getUrlEncoder().withoutPadding().encodeToString(bytes);
+    private void issueEmailVerificationToken(UserAccount userAccount) {
+        emailVerificationTokenRepository.deleteByUserAccount(userAccount);
+        String plainToken = tokenCryptoService.generateSecureToken();
+
+        EmailVerificationToken verificationToken = new EmailVerificationToken();
+        verificationToken.setUserAccount(userAccount);
+        verificationToken.setTokenHash(tokenCryptoService.hashToken(plainToken));
+        verificationToken.setExpiresAt(Instant.now().plus(24, ChronoUnit.HOURS));
+        emailVerificationTokenRepository.save(verificationToken);
+        notificationService.sendEmailVerification(userAccount.getEmail(), plainToken);
     }
 
-    private String hashToken(String plainToken) {
-        try {
-            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-            byte[] digest = messageDigest.digest(plainToken.getBytes(StandardCharsets.UTF_8));
-            return HexFormat.of().formatHex(digest);
-        } catch (NoSuchAlgorithmException exception) {
-            throw new IllegalStateException("SHA-256 hashing algorithm is not available.", exception);
-        }
+    private void issuePasswordResetToken(UserAccount userAccount) {
+        passwordResetTokenRepository.deleteByUserAccount(userAccount);
+        String plainToken = tokenCryptoService.generateSecureToken();
+
+        PasswordResetToken resetToken = new PasswordResetToken();
+        resetToken.setUserAccount(userAccount);
+        resetToken.setTokenHash(tokenCryptoService.hashToken(plainToken));
+        resetToken.setExpiresAt(Instant.now().plus(30, ChronoUnit.MINUTES));
+        passwordResetTokenRepository.save(resetToken);
+        notificationService.sendPasswordReset(userAccount.getEmail(), plainToken);
     }
 
     private String normalizeEmail(String email) {

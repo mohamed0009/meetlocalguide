@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -23,16 +23,30 @@ const NAV = [
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
-    const [ready, setReady] = useState(false);
+    const hasToken = typeof window !== "undefined" ? Boolean(getAccessToken()) : false;
+    const hasAdminRole = typeof window !== "undefined" ? checkIsAdmin() : false;
 
     useEffect(() => {
-        const token = getAccessToken();
-        if (!token) { window.location.href = "/auth/login"; return; }
-        if (!checkIsAdmin()) { window.location.href = "/dashboard"; return; }
-        setReady(true);
-    }, []);
+        if (!hasToken) {
+            window.location.href = "/auth/login";
+            return;
+        }
+        if (!hasAdminRole) {
+            window.location.href = "/dashboard";
+        }
+    }, [hasToken, hasAdminRole]);
 
-    if (!ready) {
+    if (!hasToken) {
+        return (
+            <div className="page-wrapper">
+                <div className="shell py-20 text-center">
+                    <div className="mx-auto h-8 w-8 animate-spin rounded-full border-2" style={{ borderColor: "var(--accent)", borderTopColor: "transparent" }} />
+                </div>
+            </div>
+        );
+    }
+
+    if (!hasAdminRole) {
         return (
             <div className="page-wrapper">
                 <div className="shell py-20 text-center">

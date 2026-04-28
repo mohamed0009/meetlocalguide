@@ -2,12 +2,14 @@
 
 import Link from "next/link";
 import { Compass, MapPin, Mail, Phone, X } from "lucide-react";
+import { useLocalizedHref } from "@/i18n/provider";
 
 const exploreLinks = [
+    { href: "/destinations", label: "Destinations" },
+    { href: "/experiences", label: "Experiences" },
     { href: "/tours", label: "Tour Listings" },
     { href: "/guides/salma-medina", label: "Top Guides" },
-    { href: "/explore", label: "Map Explorer" },
-    { href: "/auth/register", label: "Join as Guide" },
+    { href: "/become-a-guide", label: "Join as Guide" },
 ];
 
 const regionLinks = [
@@ -20,6 +22,7 @@ const regionLinks = [
 ];
 
 export function SiteFooter() {
+    const localize = useLocalizedHref();
     return (
         <footer
             className="relative z-10 mt-24"
@@ -35,7 +38,7 @@ export function SiteFooter() {
                 <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
                     {/* Brand block */}
                     <div className="lg:col-span-1">
-                        <Link href="/" className="flex items-center gap-2.5 w-fit">
+                        <Link href={localize("/")} className="flex items-center gap-2.5 w-fit">
                             <span
                                 className="flex h-8 w-8 items-center justify-center rounded-lg"
                                 style={{
@@ -96,7 +99,7 @@ export function SiteFooter() {
                             {exploreLinks.map((link) => (
                                 <li key={link.href}>
                                     <Link
-                                        href={link.href}
+                                        href={localize(link.href)}
                                         className="text-sm transition-colors duration-200"
                                         style={{ color: "var(--text-secondary)" }}
                                         onMouseEnter={e => {
@@ -125,7 +128,7 @@ export function SiteFooter() {
                             {regionLinks.map((region) => (
                                 <li key={region}>
                                     <Link
-                                        href={`/tours?city=${encodeURIComponent(region)}`}
+                                        href={localize(`/tours?city=${encodeURIComponent(region)}`)}
                                         className="text-sm transition-colors duration-200 flex items-center gap-2"
                                         style={{ color: "var(--text-secondary)" }}
                                         onMouseEnter={e => {

@@ -33,7 +33,10 @@ export default function AdminGuidesPage() {
             .finally(() => setLoading(false));
     }
 
-    useEffect(() => { load(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => {
+        const timer = setTimeout(() => load(), 0);
+        return () => clearTimeout(timer);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <div className="p-6 sm:p-8 space-y-6">

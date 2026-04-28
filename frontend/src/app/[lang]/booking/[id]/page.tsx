@@ -29,15 +29,13 @@ export default function BookingConfirmationPage() {
     const id = params?.id ?? "";
 
     const [booking, setBooking] = useState<BookingResponse | null>(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+    const [loading, setLoading] = useState(() => Boolean(getAccessToken()));
+    const [error, setError] = useState<string | null>(() =>
+        getAccessToken() ? null : "Please log in to view your booking."
+    );
 
     useEffect(() => {
-        if (!getAccessToken()) {
-            setError("Please log in to view your booking.");
-            setLoading(false);
-            return;
-        }
+        if (!getAccessToken()) return;
         api.get<BookingResponse>(`/bookings/${id}`)
             .then(setBooking)
             .catch(err => setError(err instanceof Error ? err.message : "Could not load booking."))

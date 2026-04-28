@@ -22,5 +22,7 @@ public record UpsertGuideProfileRequest(
 
         @DecimalMin(value = "0.0", message = "Hourly rate must be greater or equal to 0.") BigDecimal hourlyRateAmount,
 
+        @Size(max = 500, message = "Availability must be at most 500 characters.") String availability,
+
         @NotEmpty(message = "At least one guide language is required.") Set<SupportedLocale> languages) {
 }

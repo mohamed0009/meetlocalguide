@@ -471,7 +471,7 @@ export function HomeClient({ tours, guides }: HomeClientProps) {
             className="brand-font mt-3 text-3xl font-bold sm:text-4xl"
             style={{ color: "var(--text-primary)" }}
           >
-            Morocco's most trusted guide platform
+            Morocco&apos;s most trusted guide platform
           </h2>
         </div>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -917,7 +917,7 @@ export function HomeClient({ tours, guides }: HomeClientProps) {
             className="relative z-10 mx-auto mt-4 max-w-md text-sm leading-relaxed"
             style={{ color: "rgba(255,255,255,.65)" }}
           >
-            Join thousands of travelers who discovered Morocco's soul through
+            Join thousands of travelers who discovered Morocco&apos;s soul through
             the eyes of a local guide.
           </p>
 

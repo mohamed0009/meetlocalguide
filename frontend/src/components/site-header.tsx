@@ -14,10 +14,11 @@ export function SiteHeader() {
     const [mobileOpen, setMobileOpen] = useState(false);
 
     const navItems = [
-        { href: "/explore", label: dict.nav.explore },
+        { href: "/destinations", label: "Destinations" },
+        { href: "/experiences", label: "Experiences" },
         { href: "/tours", label: dict.nav.tours },
         { href: "/guides", label: dict.nav.guides },
-        { href: "/auth/register", label: dict.nav.becomeAGuide },
+        { href: "/about", label: "About" },
     ];
 
     useEffect(() => {

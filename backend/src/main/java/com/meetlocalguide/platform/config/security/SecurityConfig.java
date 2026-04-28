@@ -4,6 +4,7 @@ import com.meetlocalguide.platform.modules.user.infrastructure.UserAccountReposi
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -38,6 +39,8 @@ public class SecurityConfig {
 
     private final AuthRateLimitFilter authRateLimitFilter;
     private final UserAccountRepository userAccountRepository;
+    @Value("${app.security.require-https:false}")
+    private boolean requireHttps;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http,
@@ -60,7 +63,12 @@ public class SecurityConfig {
                         .requestMatchers("/error").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(authRateLimitFilter, UsernamePasswordAuthenticationFilter.class)
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterAfter(new SecurityHeadersFilter(), JwtAuthenticationFilter.class);
+
+        if (requireHttps) {
+            http.requiresChannel(channel -> channel.requestMatchers("/api/**").requiresSecure());
+        }
 
         return http.build();
     }

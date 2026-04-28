@@ -6,9 +6,13 @@ const BASE_URL = "https://meetlocalguide.com";
 
 const STATIC_PATHS = [
   "",
-  "/explore",
+  "/destinations",
+  "/experiences",
   "/tours",
   "/guides",
+  "/about",
+  "/contact",
+  "/become-a-guide",
   "/auth/login",
   "/auth/register",
 ];

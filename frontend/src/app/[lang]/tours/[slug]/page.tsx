@@ -292,7 +292,7 @@ export default async function TourDetailPage({ params }: TourDetailPageProps) {
                             }}
                         >
                             <p className="text-[10px] font-semibold uppercase tracking-widest mb-4" style={{ color: "var(--text-muted)" }}>
-                                What's included
+                                What&apos;s included
                             </p>
                             <ul className="space-y-2.5">
                                 {tour.includes.map((item) => (

@@ -88,6 +88,10 @@ public class GuideProfile extends BaseEntity {
     @Column(name = "hourly_rate_amount", precision = 10, scale = 2)
     private BigDecimal hourlyRateAmount;
 
+    @Size(max = 500)
+    @Column(name = "availability", length = 500)
+    private String availability;
+
     @ElementCollection(fetch = FetchType.LAZY)
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "guide_profile_languages", joinColumns = @JoinColumn(name = "guide_profile_id", foreignKey = @ForeignKey(name = "fk_guide_profile_languages_guide_profile")), uniqueConstraints = {

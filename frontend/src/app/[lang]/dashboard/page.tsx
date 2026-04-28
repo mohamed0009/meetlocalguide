@@ -30,7 +30,7 @@ function formatDuration(minutes: number) {
 type Tab = "bookings" | "saved";
 
 export default function DashboardPage() {
-    const [user, setUser] = useState<StoredUser | null>(null);
+    const [user] = useState<StoredUser | null>(() => getStoredUser());
     const [tab, setTab] = useState<Tab>("bookings");
 
     const [bookings, setBookings] = useState<BookingResponse[]>([]);
@@ -48,7 +48,6 @@ export default function DashboardPage() {
             window.location.href = "/auth/login";
             return;
         }
-        setUser(getStoredUser());
 
         api.get<PagedResponse<BookingResponse>>("/bookings/me?size=20&sort=createdAt,desc")
             .then(page => setBookings(page.content))
@@ -58,11 +57,12 @@ export default function DashboardPage() {
 
     useEffect(() => {
         if (tab !== "saved" || favLoaded) return;
-        setFavLoading(true);
+        const timer = setTimeout(() => setFavLoading(true), 0);
         api.get<PagedResponse<FavoriteSummary>>("/favorites/me?size=50&sort=savedAt,desc")
             .then(page => setFavorites(page.content))
             .catch(err => setFavError(err instanceof Error ? err.message : "Could not load saved tours."))
             .finally(() => { setFavLoading(false); setFavLoaded(true); });
+        return () => clearTimeout(timer);
     }, [tab, favLoaded]);
 
     function handleLogout() {

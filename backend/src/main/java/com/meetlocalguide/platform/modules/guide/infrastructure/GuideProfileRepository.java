@@ -16,6 +16,8 @@ public interface GuideProfileRepository extends JpaRepository<GuideProfile, UUID
 
     Optional<GuideProfile> findByUserAccountEmailIgnoreCase(String email);
 
+    long countByVerificationStatus(GuideVerificationStatus status);
+
     @Query("""
             select gp from GuideProfile gp
             where (:city is null or lower(gp.city) = lower(:city))

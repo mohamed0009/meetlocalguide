@@ -12,6 +12,7 @@ public record GuideSummaryResponse(
         String city,
         String country,
         String verificationStatus,
+        String availability,
         BigDecimal averageRating,
         int totalReviews,
         Set<SupportedLocale> languages) {

@@ -5,12 +5,6 @@ import Link from "next/link";
 import { MapPin, Clock, Star, RefreshCw, AlertCircle, Archive } from "lucide-react";
 import { api, type TourSummary, type PagedResponse } from "@/lib/api-client";
 
-const STATUS_CONFIG: Record<string, { color: string; bg: string }> = {
-    PUBLISHED: { color: "#16a34a", bg: "rgba(22,163,74,0.1)" },
-    DRAFT: { color: "#d97706", bg: "rgba(217,119,6,0.1)" },
-    ARCHIVED: { color: "var(--text-muted)", bg: "var(--bg-surface)" },
-};
-
 export default function AdminToursPage() {
     const [tours, setTours] = useState<TourSummary[]>([]);
     const [total, setTotal] = useState(0);
@@ -97,7 +91,6 @@ export default function AdminToursPage() {
 
                     <div className="divide-y" style={{ borderColor: "var(--border)" }}>
                         {tours.map(t => {
-                            const status = STATUS_CONFIG["PUBLISHED"];
                             return (
                                 <div
                                     key={t.id}

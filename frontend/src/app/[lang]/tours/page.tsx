@@ -38,17 +38,6 @@ export default async function ToursPage({ searchParams }: ToursPageProps) {
     const tours = searchTours({ query, city, maxPriceUsd, minDurationHours });
     const cities = getCities();
 
-    function labelStyle(label: string) {
-        return (
-            <span
-                className="mb-1.5 block text-[10px] font-semibold uppercase tracking-widest"
-                style={{ color: "var(--text-muted)" }}
-            >
-                {label}
-            </span>
-        );
-    }
-
     return (
         <div className="page-wrapper">
             {/* Header */}

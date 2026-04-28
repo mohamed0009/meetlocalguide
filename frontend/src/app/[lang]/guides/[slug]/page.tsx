@@ -118,6 +118,7 @@ export default async function GuideProfilePage({ params }: GuidePageProps) {
                                             border: "1px solid var(--border)",
                                         }}
                                     >
+                                        <Icon className="h-3.5 w-3.5" style={{ color: "var(--accent)" }} />
                                         <p className="text-[10px] font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>
                                             {label}
                                         </p>

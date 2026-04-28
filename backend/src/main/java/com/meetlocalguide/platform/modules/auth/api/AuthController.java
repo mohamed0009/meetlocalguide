@@ -1,10 +1,13 @@
 package com.meetlocalguide.platform.modules.auth.api;
 
 import com.meetlocalguide.platform.modules.auth.api.dto.AuthResponse;
+import com.meetlocalguide.platform.modules.auth.api.dto.ForgotPasswordRequest;
 import com.meetlocalguide.platform.modules.auth.api.dto.LoginRequest;
 import com.meetlocalguide.platform.modules.auth.api.dto.LogoutRequest;
 import com.meetlocalguide.platform.modules.auth.api.dto.RefreshTokenRequest;
 import com.meetlocalguide.platform.modules.auth.api.dto.RegisterRequest;
+import com.meetlocalguide.platform.modules.auth.api.dto.ResetPasswordRequest;
+import com.meetlocalguide.platform.modules.auth.api.dto.VerifyEmailRequest;
 import com.meetlocalguide.platform.modules.auth.application.AuthService;
 import com.meetlocalguide.platform.modules.auth.application.ClientMetadata;
 import jakarta.servlet.http.HttpServletRequest;
@@ -52,6 +55,24 @@ public class AuthController {
     @PostMapping("/logout")
     public ResponseEntity<Void> logout(@RequestBody(required = false) LogoutRequest request) {
         authService.logout(request);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/verify-email")
+    public ResponseEntity<Void> verifyEmail(@Valid @RequestBody VerifyEmailRequest request) {
+        authService.verifyEmail(request);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/forgot-password")
+    public ResponseEntity<Void> forgotPassword(@Valid @RequestBody ForgotPasswordRequest request) {
+        authService.forgotPassword(request);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<Void> resetPassword(@Valid @RequestBody ResetPasswordRequest request) {
+        authService.resetPassword(request);
         return ResponseEntity.noContent().build();
     }
 

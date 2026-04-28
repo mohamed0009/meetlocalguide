@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -38,6 +39,7 @@ public class TourService {
     private final GuideProfileRepository guideProfileRepository;
 
     @Transactional(readOnly = true)
+    @Cacheable(value = "tours-search", key = "T(java.util.Objects).hash(#city, #status, #minPrice, #maxPrice, #minDuration, #maxDuration, #title, #pageable.pageNumber, #pageable.pageSize, #pageable.sort.toString())")
     public Page<TourSummaryResponse> listTours(
             String city,
             TourStatus status,

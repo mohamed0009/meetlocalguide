@@ -17,6 +17,7 @@ public record GuideDetailResponse(
         String country,
         String verificationStatus,
         BigDecimal hourlyRateAmount,
+        String availability,
         BigDecimal averageRating,
         int totalReviews,
         Set<SupportedLocale> languages) {

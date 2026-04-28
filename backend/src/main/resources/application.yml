@@ -15,10 +15,16 @@ spring:
     locations: classpath:db/migration
   lifecycle:
     timeout-per-shutdown-phase: 20s
+  cache:
+    type: simple
+  task:
+    execution:
+      thread-name-prefix: mlg-async-
 
 server:
   port: ${SERVER_PORT:8080}
   shutdown: graceful
+  forward-headers-strategy: framework
 
 management:
   endpoints:
@@ -48,6 +54,10 @@ info:
     version: ${APP_VERSION:dev}
 
 app:
+  frontend:
+    base-url: ${APP_FRONTEND_BASE_URL:https://meetlocalguide.com}
+  security:
+    require-https: ${APP_SECURITY_REQUIRE_HTTPS:false}
   security:
     rate-limit:
       auth-requests-per-minute: ${APP_AUTH_RATE_LIMIT_PER_MINUTE:30}
